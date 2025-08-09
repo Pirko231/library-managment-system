@@ -13,4 +13,8 @@ public class PersonManager {
     public void addPerson(Person person) {
         people.add(person);
     }
+
+    public void display() {
+        System.out.println(people);
+    }
 }

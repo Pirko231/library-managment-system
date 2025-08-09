@@ -16,7 +16,8 @@ public class DefaultModel implements Model {
         middleware = Middleware.link(
                 new AddBookMiddleware(bookshelf),
                 new AddPersonMiddleware(personManager),
-                new QuitMiddleware(running)
+                new QuitMiddleware(running),
+                new DisplayMiddleware(bookshelf, personManager)
         );
     }
 

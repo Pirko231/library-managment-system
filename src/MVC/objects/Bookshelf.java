@@ -13,6 +13,9 @@ public class Bookshelf {
 
     public void addBook(Book book) {
         books.add(book);
+    }
+
+    public void display() {
         System.out.println(books);
     }
 
