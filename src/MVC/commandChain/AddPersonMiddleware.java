@@ -1,10 +1,29 @@
 package MVC.commandChain;
 
-public class AddPersonMiddleware extends Middleware
-{
+import MVC.objects.Person;
+import MVC.objects.PersonManager;
+
+public class AddPersonMiddleware extends Middleware {
+
+    private PersonManager personManager;
+
+    public AddPersonMiddleware(PersonManager personManager) {
+        this.personManager = personManager;
+    }
+
     @Override
-    public boolean check(String[] args)
-    {
+    public boolean check(String[] args) {
+        if (args.length > 1 && args[0].equals("add")) {
+            String data = args[1];
+            if (data.contains(":")) {
+                String name = new String(data.substring(0, data.indexOf(':')));
+                String surname = new String(data.substring(data.indexOf(':') + 1, data.length()));
+                personManager.addPerson(new Person(name, surname));
+                System.out.println("Dodano osobe");
+                return true;
+            }
+        }
+        System.out.println("Nie dodano osoby");
         return checkNext(args);
     }
 }

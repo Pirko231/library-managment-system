@@ -7,13 +7,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class DefaultModel implements Model {
 
     private final Bookshelf bookshelf;
+    private final PersonManager personManager;
     private final Middleware middleware;
 
     public DefaultModel(AtomicBoolean running) {
         bookshelf = new Bookshelf("books.txt");
+        personManager = new PersonManager();
         middleware = Middleware.link(
                 new AddBookMiddleware(bookshelf),
-                new AddPersonMiddleware(),
+                new AddPersonMiddleware(personManager),
                 new QuitMiddleware(running)
         );
     }
