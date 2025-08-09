@@ -1,25 +1,28 @@
 package MVC;
 
-public class Controller
-{
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class Controller {
+
     private View view;
     private Model model;
-    private boolean isActive = true;
+    private AtomicBoolean isActive;
 
-    public Controller(View view, Model model)
-    {
-        this.view = view; this.model = model;
+    public Controller(View view, Model model, AtomicBoolean isActive) {
+        this.view = view;
+        this.model = model;
+        this.isActive = isActive;
     }
 
-    public boolean running() {return isActive;}
+    public boolean running() {
+        return isActive.get();
+    }
 
-    public void update()
-    {
+    public void update() {
         var command = view.getCommand();
-        if(command.isPresent())
-        {
+        if (command.isPresent()) {
             model.sendCommand(command.get());
-            
+
         }
     }
 }

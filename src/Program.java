@@ -1,24 +1,17 @@
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import MVC.*;
-import java.util.Scanner;
 
-public class Program
-{
-    final private static Scanner scanner = new Scanner(System.in);
-    //private static ArrayList<Book> books = new ArrayList<>();
+public class Program {
 
-    public static void main(String[] args)
-    {
-        String filename = new String();
-        if(args.length > 0 && args[0].contains(".txt"))
-            filename = args[0];
-        else
-            filename = "books.txt";
+    public static void main(String[] args) {
+        AtomicBoolean running = new AtomicBoolean(true);
         View view = new TerminalView();
-        Model model = new DefaultModel(filename);
-        Controller controller = new Controller(view, model);
+        Model model = new DefaultModel(running);
+        Controller controller = new Controller(view, model, running);
 
-        while(controller.running())
-        {
+        while (controller.running()) {
             controller.update();
         }
     }
