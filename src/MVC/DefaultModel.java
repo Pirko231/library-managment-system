@@ -4,8 +4,8 @@ import MVC.objects.*;
 
 public class DefaultModel implements Model
 {
-    private Bookshelf bookshelf;
-    private Middleware middleware;
+    private final Bookshelf bookshelf;
+    private final Middleware middleware;
 
     public DefaultModel(String fileName)
     {
@@ -17,8 +17,8 @@ public class DefaultModel implements Model
     }
 
     @Override
-    public void addBook(Book book)
+    public boolean sendCommand(String[] args)
     {
-        bookshelf.addBook(book);
+        return middleware.check(args);
     }
 }

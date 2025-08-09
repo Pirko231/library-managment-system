@@ -1,44 +1,37 @@
 package MVC.objects;
+
 import java.util.ArrayList;
 
-public class Bookshelf
-{
+public class Bookshelf {
+
     private ArrayList<Book> books;
 
-    public Bookshelf(String fileName)
-    {
+    public Bookshelf(String fileName) {
         books = new ArrayList<>();
         loadBooks(fileName);
     }
 
-    public void addBook(Book book)
-    {
+    public void addBook(Book book) {
         books.add(book);
         System.out.println(books);
     }
 
-    private void loadBooks(String fileName)
-    {
+    private void loadBooks(String fileName) {
         java.io.File file = new java.io.File(fileName);
         file.setReadable(true);
-        if(file.canRead())
-        {
-            try
-            {
+        if (file.canRead()) {
+            try {
                 java.util.Scanner fileScanner = new java.util.Scanner(file);
                 String title = new String();
                 String author = new String();
-                while(fileScanner.hasNext())
-                {
+                while (fileScanner.hasNext()) {
                     String line = fileScanner.nextLine();
-                    title = line.substring(0,line.indexOf(','));
+                    title = line.substring(0, line.indexOf(','));
                     author = line.substring(line.indexOf(',') + 1, line.length());
-                    books.add(new Book(title,author));   
+                    books.add(new Book(title, author));
                 }
-                
-            }
-            catch(Exception e)
-            {
+                fileScanner.close();
+            } catch (Exception e) {
                 System.out.println("File didn't open: " + fileName);
                 e.printStackTrace();
             }

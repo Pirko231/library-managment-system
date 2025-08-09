@@ -1,5 +1,4 @@
 package MVC;
-import MVC.objects.*;
 
 public class Controller
 {
@@ -16,10 +15,10 @@ public class Controller
 
     public void update()
     {
-        var book = view.addBook();
-        if(book.isPresent())
+        var command = view.getCommand();
+        if(command.isPresent())
         {
-            model.addBook(book.get());
+            model.sendCommand(command.get());
             
         }
     }

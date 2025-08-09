@@ -5,6 +5,6 @@ public class AddPersonMiddleware extends Middleware
     @Override
     public boolean check(String[] args)
     {
-        return false;
+        return checkNext(args);
     }
 }
