@@ -19,6 +19,16 @@ public class Bookshelf {
         System.out.println(books);
     }
 
+    // kiedy znajdzie ksiazke zwroci ja. kiedy nie zwroci null
+    public Book findBook(String name) {
+        for (Book book : books) {
+            if (book.getTitle().equals(name)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
     private void loadBooks(String fileName) {
         java.io.File file = new java.io.File(fileName);
         file.setReadable(true);

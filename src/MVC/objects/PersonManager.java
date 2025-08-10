@@ -15,6 +15,18 @@ public class PersonManager {
     }
 
     public void display() {
-        System.out.println(people);
+        for (Person p : people) {
+            System.out.println(p.getHash());
+        }
+    }
+
+    // kiedy znajdzie osobe zwroci ja. W przeciwnym razie zwraca null
+    public Person findPerson(String hasCode) {
+        for (Person person : people) {
+            if (person.getHash().equals(hasCode)) {
+                return person;
+            }
+        }
+        return null;
     }
 }
