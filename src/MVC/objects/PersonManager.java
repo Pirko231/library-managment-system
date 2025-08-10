@@ -29,4 +29,8 @@ public class PersonManager {
         }
         return null;
     }
+
+    public boolean removePerson(Person person) {
+        return people.remove(person);
+    }
 }

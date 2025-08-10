@@ -29,6 +29,10 @@ public class Bookshelf {
         return null;
     }
 
+    public boolean removeBook(Book book) {
+        return books.remove(book);
+    }
+
     private void loadBooks(String fileName) {
         java.io.File file = new java.io.File(fileName);
         file.setReadable(true);

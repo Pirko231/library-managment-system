@@ -19,6 +19,8 @@ public class DefaultModel implements Model {
                 new QuitMiddleware(running),
                 new DisplayMiddleware(bookshelf, personManager),
                 new AddOwnerMiddleware(bookshelf, personManager),
+                new RemoveBookMiddleware(bookshelf),
+                new RemovePersonMiddleware(personManager),
                 new HelpMiddleware()
         );
     }
