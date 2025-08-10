@@ -13,7 +13,7 @@ public class AddPersonMiddleware extends Middleware {
 
     @Override
     public boolean check(String[] args) {
-        if (args.length > 2 && args[0].equals("add") && args[1].equals("person")) {
+        if (args.length > 2 && args[0].equals("add") && (args[1].equals("person") || args[1].equals("Person"))) {
             String data = args[2];
             if (data.contains(":")) {
                 String name = new String(data.substring(0, data.indexOf(':')));

@@ -14,7 +14,7 @@ public class AddOwnerMiddleware extends Middleware {
 
     @Override
     public boolean check(String[] args) {
-        if (args.length > 3 && args[0].equals("add") && args[1].equals("owner")) {
+        if (args.length > 3 && args[0].equals("add") && (args[1].equals("owner") || args[1].equals("Owner"))) {
             String title = args[2];
             Book book = bookshelf.findBook(title);
             if (book != null) {

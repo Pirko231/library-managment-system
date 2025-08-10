@@ -1,7 +1,6 @@
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import MVC.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Program {
 
@@ -10,6 +9,11 @@ public class Program {
         View view = new TerminalView();
         Model model = new DefaultModel(running);
         Controller controller = new Controller(view, model, running);
+
+        if(args.length > 0) {
+            controller.runChain(args);
+            return;
+        }
 
         while (controller.running()) {
             controller.update();
