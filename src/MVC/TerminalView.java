@@ -22,25 +22,7 @@ public class TerminalView implements View {
             if (data.isEmpty()) {
                 return Optional.empty();
             }
-            int size = 1;
-            for (int i = 0; i < data.length(); i++) {
-                if (data.charAt(i) == ' ') {
-                    size++;
-                }
-            }
-            // wpisywanie danych do tablicy
-            String[] args = new String[size];
-            if (size == 1) {
-                args[0] = data;
-                return Optional.of(args);
-            }
-            data += " ";
-            for (int i = 0; i < size; i++) {
-                args[i] = data.substring(0, data.indexOf(' '));
-                data = data.replace(args[0] + " ", "");
-            }
-
-            return Optional.of(args);
+            return Optional.of(data.split(" "));
         }
 
         return Optional.empty();
