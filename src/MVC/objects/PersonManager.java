@@ -5,12 +5,15 @@ import java.util.ArrayList;
 public class PersonManager {
 
     private ArrayList<Person> people = new ArrayList<>();
+    private int code = 0;
 
     public PersonManager(String filename) {
-        loadPeople(filename);
+        code = loadPeople(filename);
     }
 
     public void addPerson(Person person) {
+        code++;
+        person.setCode(code);
         people.add(person);
     }
 
@@ -34,7 +37,9 @@ public class PersonManager {
         return people.remove(person);
     }
 
-    private void loadPeople(String filename) {
+    // zwraca najwyzszy wczytany kod
+    private int loadPeople(String filename) {
+        int maxCode = 0;
         try {
             java.io.File file = new java.io.File(filename);
             java.util.Scanner scanner = new java.util.Scanner(file);
@@ -44,6 +49,9 @@ public class PersonManager {
                 String name = line.substring(1, line.indexOf(','));
                 String surname = line.substring(line.indexOf(',') + 1, line.indexOf('}'));
                 int code = Integer.valueOf(line.substring(line.indexOf('_') + 1, line.length()));
+                if (code > maxCode) {
+                    maxCode = code;
+                }
                 Person person = new Person(name, surname);
                 person.setCode(code);
                 people.add(person);
@@ -52,6 +60,7 @@ public class PersonManager {
         } catch (Exception e) {
             System.out.println("File didn't open: " + filename);
         }
+        return maxCode;
     }
 
     public void savePeople(String filename) {

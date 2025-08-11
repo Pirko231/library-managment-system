@@ -2,7 +2,6 @@ package MVC.objects;
 
 public class Person {
 
-    private static int allCode = 0;
     int code = 0;
     private String name;
     private String surname;
@@ -10,8 +9,6 @@ public class Person {
     public Person(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        allCode++;
-        code = allCode;
     }
 
     @Override
