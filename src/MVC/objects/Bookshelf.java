@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class Bookshelf {
 
     private ArrayList<Book> books;
+    private PersonManager personManager;
 
-    public Bookshelf(String fileName) {
+    public Bookshelf(String fileName, PersonManager personManager) {
         books = new ArrayList<>();
+        this.personManager = personManager;
         loadBooks(fileName);
     }
 
@@ -43,9 +45,12 @@ public class Bookshelf {
                 String author = new String();
                 while (fileScanner.hasNext()) {
                     String line = fileScanner.nextLine();
-                    title = line.substring(0, line.indexOf(','));
-                    author = line.substring(line.indexOf(',') + 1, line.length());
-                    books.add(new Book(title, author));
+                    title = line.substring(1, line.indexOf(','));
+                    author = line.substring(line.indexOf(',') + 1, line.indexOf('}'));
+                    String owner = line.substring(line.indexOf("Owner = "), line.length());
+                    Book b = new Book(title, author);
+                    b.setOwner(personManager.findPerson(owner));
+                    books.add(b);
                 }
                 fileScanner.close();
             } catch (Exception e) {
@@ -54,5 +59,22 @@ public class Bookshelf {
             }
             System.out.println(books);
         }
+    }
+
+    public void saveBooks(String filename) {
+        try {
+            java.io.FileWriter writer = new java.io.FileWriter(filename);
+            for (Book book : books) {
+                try {
+                    writer.write(book.toString() + "\n");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            writer.close();
+        } catch (Exception e) {
+        }
+
     }
 }

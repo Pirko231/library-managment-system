@@ -29,4 +29,8 @@ public class Controller {
     public void runChain(String[] args) {
         model.sendCommand(args);
     }
+
+    public void writeToFiles() {
+        model.writeToFiles();
+    }
 }

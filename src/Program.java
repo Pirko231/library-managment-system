@@ -1,6 +1,11 @@
 
-import MVC.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import MVC.Controller;
+import MVC.DefaultModel;
+import MVC.Model;
+import MVC.TerminalView;
+import MVC.View;
 
 public class Program {
 
@@ -10,7 +15,7 @@ public class Program {
         Model model = new DefaultModel(running);
         Controller controller = new Controller(view, model, running);
 
-        if(args.length > 0) {
+        if (args.length > 0) {
             controller.runChain(args);
             return;
         }
@@ -18,5 +23,6 @@ public class Program {
         while (controller.running()) {
             controller.update();
         }
+        controller.writeToFiles();
     }
 }
