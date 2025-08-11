@@ -38,7 +38,8 @@ public class PersonManager {
         try {
             java.io.File file = new java.io.File(filename);
             java.util.Scanner scanner = new java.util.Scanner(file);
-            if (scanner.hasNextLine()) {
+            file.setReadable(true);
+            while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String name = line.substring(1, line.indexOf(','));
                 String surname = line.substring(line.indexOf(',') + 1, line.indexOf('}'));
