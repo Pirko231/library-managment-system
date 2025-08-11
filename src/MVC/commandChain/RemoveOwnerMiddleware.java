@@ -17,6 +17,7 @@ public class RemoveOwnerMiddleware extends Middleware {
             String title = args[2];
             Book book = bookshelf.findBook(title);
             if (book != null) {
+                book.getOwner().removeBook(book);
                 book.removeOwner();
                 System.out.println("Owner was deleted");
                 return true;

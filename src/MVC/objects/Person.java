@@ -1,10 +1,13 @@
 package MVC.objects;
 
+import java.util.List;
+
 public class Person {
 
     int code = 0;
     private String name;
     private String surname;
+    private List<Book> books;
 
     public Person(String name, String surname) {
         this.name = name;
@@ -22,5 +25,20 @@ public class Person {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public boolean removeBook(Book book) {
+        return books.remove(book);
+    }
+
+    public void removeAll() {
+        for (Book book : books) {
+            book.setOwner(null);
+            books.remove(book);
+        }
     }
 }

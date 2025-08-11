@@ -25,6 +25,7 @@ public class AddOwnerMiddleware extends Middleware {
                 Person owner = personManager.findPerson(hash);
                 if (owner != null) {
                     book.setOwner(owner);
+                    owner.addBook(book);
                     System.out.println("Owner was added");
                     return true;
                 }

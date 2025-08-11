@@ -1,5 +1,6 @@
 package MVC.commandChain;
 
+import MVC.objects.Person;
 import MVC.objects.PersonManager;
 
 public class RemovePersonMiddleware extends Middleware {
@@ -12,8 +13,10 @@ public class RemovePersonMiddleware extends Middleware {
 
     public boolean check(String[] args) {
         if (args.length > 2 && args[0].equals("remove") && args[1].equals("person")) {
-            boolean succes = personManager.removePerson(personManager.findPerson(args[2]));
+            Person person = personManager.findPerson(args[2]);
+            boolean succes = personManager.removePerson(person);
             if (succes) {
+                person.removeAll();
                 System.out.println("Person was deleted");
                 return true;
             }
