@@ -1,5 +1,6 @@
 package MVC.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
@@ -7,7 +8,7 @@ public class Person {
     int code = 0;
     private String name;
     private String surname;
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 
     public Person(String name, String surname) {
         this.name = name;

@@ -49,7 +49,9 @@ public class Bookshelf {
                     author = line.substring(line.indexOf(',') + 1, line.indexOf('}'));
                     String owner = line.substring(line.indexOf("Owner = ") + 8, line.length());
                     Book b = new Book(title, author);
-                    b.setOwner(personManager.findPerson(owner));
+                    var o = personManager.findPerson(owner);
+                    b.setOwner(o);
+                    o.addBook(b);
                     books.add(b);
                 }
                 fileScanner.close();
