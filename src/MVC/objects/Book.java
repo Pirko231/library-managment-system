@@ -28,6 +28,10 @@ public class Book {
         this.owner = owner;
     }
 
+    public void removeOwner() {
+        owner = null;
+    }
+
     public final String getTitle() {
         return title;
     }

@@ -21,6 +21,7 @@ public class DefaultModel implements Model {
                 new AddOwnerMiddleware(bookshelf, personManager),
                 new RemoveBookMiddleware(bookshelf),
                 new RemovePersonMiddleware(personManager),
+                new RemoveOwnerMiddleware(bookshelf),
                 new HelpMiddleware()
         );
     }

@@ -20,7 +20,10 @@ public class HelpMiddleware extends Middleware {
         System.out.println("Get help: help | Help | h");
         System.out.println("Add book: add book title,author");
         System.out.println("Add person: add person name:surname");
+        System.out.println("Remove book: remove book title,author");
+        System.out.println("Remove person: remove person personHash");
         System.out.println("Add book owner: add owner title personHash");
+        System.out.println("Remove book owner: remove owner title personHash");
         System.out.println("Get books (book name + owner): books");
         System.out.println("Get people (personHash): people");
         System.out.println("Quit: q | quit");
