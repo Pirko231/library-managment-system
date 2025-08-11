@@ -19,11 +19,10 @@ public class AddPersonMiddleware extends Middleware {
                 String name = new String(data.substring(0, data.indexOf(':')));
                 String surname = new String(data.substring(data.indexOf(':') + 1, data.length()));
                 personManager.addPerson(new Person(name, surname));
-                System.out.println("Dodano osobe");
+                System.out.println("Person was added");
                 return true;
             }
         }
-        System.out.println("Nie dodano osoby");
         return checkNext(args);
     }
 }

@@ -18,7 +18,7 @@ public class RemoveOwnerMiddleware extends Middleware {
             Book book = bookshelf.findBook(title);
             if (book != null) {
                 book.removeOwner();
-                System.out.println("Usunieto wlasciciela");
+                System.out.println("Owner was deleted");
                 return true;
             }
         }

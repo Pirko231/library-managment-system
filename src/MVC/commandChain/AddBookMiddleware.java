@@ -20,12 +20,11 @@ public class AddBookMiddleware extends Middleware {
                 String title = data.substring(0, data.indexOf(','));
                 String author = data.substring(data.indexOf(',') + 1);
                 bookshelf.addBook(new Book(title, author));
-                System.out.println("Dodano ksiazke");
+                System.out.println("Book was added");
                 return true;
 
             }
         }
-        System.out.println("Nie dodano ksiazki");
         return checkNext(args);
     }
 }

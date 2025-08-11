@@ -1,6 +1,9 @@
 package MVC.commandChain;
 
-import MVC.objects.*;
+import MVC.objects.Book;
+import MVC.objects.Bookshelf;
+import MVC.objects.Person;
+import MVC.objects.PersonManager;
 
 public class AddOwnerMiddleware extends Middleware {
 
@@ -22,12 +25,11 @@ public class AddOwnerMiddleware extends Middleware {
                 Person owner = personManager.findPerson(hash);
                 if (owner != null) {
                     book.setOwner(owner);
-                    System.out.println("Dodano wlasciciela");
+                    System.out.println("Owner was added");
                     return true;
                 }
             }
         }
-        System.out.println("Nie dodano wlasciciela");
         return checkNext(args);
     }
 }
