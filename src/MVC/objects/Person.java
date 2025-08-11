@@ -22,4 +22,8 @@ public class Person {
     public String getHash() {
         return toString() + "_" + String.valueOf(code);
     }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 }

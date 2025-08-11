@@ -22,7 +22,7 @@ public class DefaultModel implements Model {
     private final Middleware middleware;
 
     public DefaultModel(AtomicBoolean running) {
-        personManager = new PersonManager();
+        personManager = new PersonManager("people.txt");
         bookshelf = new Bookshelf("books.txt", personManager);
         middleware = Middleware.link(
                 new AddBookMiddleware(bookshelf),
@@ -45,5 +45,6 @@ public class DefaultModel implements Model {
     @Override
     public void writeToFiles() {
         bookshelf.saveBooks("books.txt");
+        personManager.savePeople("people.txt");
     }
 }

@@ -55,9 +55,7 @@ public class Bookshelf {
                 fileScanner.close();
             } catch (Exception e) {
                 System.out.println("File didn't open: " + fileName);
-                e.printStackTrace();
             }
-            System.out.println(books);
         }
     }
 

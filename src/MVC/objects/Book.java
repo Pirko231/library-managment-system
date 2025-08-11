@@ -17,7 +17,9 @@ public class Book {
 
     @Override
     public String toString() {
-        return "{" + title + "," + author + "} Owner = " + owner;
+        String result = "{" + title + "," + author + "} Owner = ";
+        result += owner != null ? owner.getHash() : owner;
+        return result;
     }
 
     public Person getOwner() {
