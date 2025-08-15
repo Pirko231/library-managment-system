@@ -12,7 +12,7 @@ public class QuitMiddleware extends Middleware {
 
     @Override
     public boolean check(String[] args) {
-        if (args.length > 0 && args[0].equals("q") || args[0].equals("quit")) {
+        if (args.length > 0 && (args[0].equals("q") || args[0].equals("quit"))) {
             running.set(false);
             return true;
         }
