@@ -56,7 +56,7 @@ public class PersonManager {
                 person.setCode(code);
                 people.add(person);
             }
-
+            scanner.close();
         } catch (Exception e) {
             System.out.println("File didn't open: " + filename);
         }
