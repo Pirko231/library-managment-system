@@ -35,6 +35,10 @@ public class Bookshelf {
         return books.remove(book);
     }
 
+    public int getSize() {
+        return books.size();
+    }
+
     private void loadBooks(String fileName) {
         java.io.File file = new java.io.File(fileName);
         file.setReadable(true);
