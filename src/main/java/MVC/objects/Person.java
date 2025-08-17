@@ -2,6 +2,7 @@ package MVC.objects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Person {
 
@@ -18,6 +19,17 @@ public class Person {
     @Override
     public String toString() {
         return "{" + name + "," + surname + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        var compare = (Person)o;
+        return name.equals(compare.name) && surname.equals(compare.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname);
     }
 
     public String getHash() {
