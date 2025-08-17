@@ -4,21 +4,15 @@
         {
             "label": "Compile Java Project",
             "type": "shell",
-            "command": "javac",
+            "command": "mvn",
             "args": [
-                "-d", "out",
-                "-cp", "out",
-                "-g:source,lines,vars",
-                "src/MVC/*.java",
-                "src/MVC/objects/*.java",
-                "src/MVC/commandChain/*.java",
-                "src/Program.java"
+                "compile"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$javac"],
+            "problemMatcher": ["$mvn"],
             "detail": "Kompilacja wszystkich plików .java do folderu out/"
         }
     ]
