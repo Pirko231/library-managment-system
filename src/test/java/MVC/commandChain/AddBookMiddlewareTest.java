@@ -3,7 +3,6 @@ package MVC.commandChain;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import MVC.commandChain.AddBookMiddleware;
 import MVC.objects.*;
 
 public class AddBookMiddlewareTest {

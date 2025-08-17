@@ -54,4 +54,8 @@ public class Person {
             books.remove(book);
         }
     }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 }
