@@ -13,7 +13,7 @@ public class AddBookMiddleware extends Middleware {
 
     @Override
     public boolean check(String[] args) {
-        if (args.length > 5 && args[0].equals("add") && (args[1].equals("book") || args[1].equals("Book"))) // dwa elementy
+        if (args.length > 4 && args[0].equals("add") && (args[1].equals("book") || args[1].equals("Book"))) // dwa elementy
         {
             Book book = handleInput(args);
             bookshelf.addBook(book);

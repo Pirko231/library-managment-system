@@ -5,9 +5,9 @@
       "type": "java",
       "name": "Debug Program",
       "request": "launch",
-      "mainClass": "Program",
+      "mainClass": "ProgramTest",
       "classPaths": [
-        "${workspaceFolder}/out"
+        "${workspaceFolder}/target/test-classes"
       ],
       "console": "integratedTerminal"
     }
