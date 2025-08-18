@@ -40,7 +40,13 @@ public class Book {
     }
 
     public void setOwner(Person owner) {
+        if (this.owner != null) {
+            this.owner.removeBook(this);
+        }
         this.owner = owner;
+        if (this.owner != null) {
+            owner.addBook(this);
+        }
     }
 
     public void removeOwner() {
