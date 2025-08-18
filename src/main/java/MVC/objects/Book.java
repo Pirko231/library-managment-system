@@ -45,7 +45,7 @@ public class Book {
         }
         this.owner = owner;
         if (this.owner != null) {
-            owner.addBook(this);
+            this.owner.addBook(this);
         }
     }
 

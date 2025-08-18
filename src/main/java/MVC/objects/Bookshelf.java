@@ -31,6 +31,17 @@ public class Bookshelf {
         return null;
     }
 
+    // znajduje ksiazke o takiej samej nazwie i autorze
+    public Book findBook(Book book) {
+        Book result = null;
+        for (Book b : books) {
+            if (b.equals(book)) {
+                result = b;
+            }
+        }
+        return result;
+    }
+
     public boolean removeBook(Book book) {
         return books.remove(book);
     }
