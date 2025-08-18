@@ -37,6 +37,10 @@ public class PersonManager {
         return people.remove(person);
     }
 
+    public int getSize() {
+        return people.size();
+    }
+
     // zwraca najwyzszy wczytany kod
     private int loadPeople(String filename) {
         int maxCode = 0;
