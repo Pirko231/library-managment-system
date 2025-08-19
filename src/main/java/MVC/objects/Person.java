@@ -50,7 +50,7 @@ public class Person {
 
     public void removeAll() {
         for (Book book : books) {
-            book.setOwner(null);
+            book.removeOwner();
         }
         books.clear();
     }

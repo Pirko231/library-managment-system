@@ -14,16 +14,29 @@ public class RemoveOwnerMiddleware extends Middleware {
     @Override
     public boolean check(String[] args) {
         if (args.length > 2 && args[0].equals("remove") && args[1].equals("owner")) {
-            String title = args[2];
-            Book book = bookshelf.findBook(title);
-            if (book != null) {
-                book.getOwner().removeBook(book);
-                book.removeOwner();
-                System.out.println("Owner was deleted");
+            if (handleInput(args)) {
                 return true;
             }
         }
 
         return checkNext(args);
+    }
+
+    private boolean handleInput(String[] args) {
+        String title = new String();
+        int i = 2;
+        for(; i < args.length && !args[i].equals(":"); i++) {
+            title += args[i] + " ";
+        }
+        title = title.substring(0, title.length() - 1);
+        i++; // pomijamy znak :
+        Book book = bookshelf.findBook(title);
+        if (book != null) {
+            book.getOwner().removeBook(book);
+            book.removeOwner();
+            System.out.println("Owner was deleted");
+            return true;
+        }
+        return false;
     }
 }

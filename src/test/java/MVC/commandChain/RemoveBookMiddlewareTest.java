@@ -9,11 +9,6 @@ import MVC.objects.PersonManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.net.http.HttpClient;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-
 public class RemoveBookMiddlewareTest {
     
     @Test
