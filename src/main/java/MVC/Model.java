@@ -1,8 +1,17 @@
 package MVC;
 
-public interface Model {
+import java.util.List;
 
-    public void writeToFiles();
+import MVC.objects.Book;
+import MVC.objects.Person;
 
-    public boolean sendCommand(String[] args);
+public abstract class Model extends Observable {
+
+    public abstract void writeToFiles();
+
+    public abstract boolean sendCommand(String[] args);
+
+    public abstract List<Book> getBooks(); 
+
+    public abstract List<Person> getPeople();
 }

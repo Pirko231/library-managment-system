@@ -1,6 +1,7 @@
 package MVC.objects;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Bookshelf {
 
@@ -48,6 +49,10 @@ public class Bookshelf {
 
     public int getSize() {
         return books.size();
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     private void loadBooks(String fileName) {

@@ -1,5 +1,6 @@
 package MVC;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import MVC.commandChain.AddBookMiddleware;
@@ -12,14 +13,17 @@ import MVC.commandChain.QuitMiddleware;
 import MVC.commandChain.RemoveBookMiddleware;
 import MVC.commandChain.RemoveOwnerMiddleware;
 import MVC.commandChain.RemovePersonMiddleware;
+import MVC.objects.Book;
 import MVC.objects.Bookshelf;
+import MVC.objects.Person;
 import MVC.objects.PersonManager;
 
-public class DefaultModel implements Model {
+public class DefaultModel extends Model {
 
     private final Bookshelf bookshelf;
     private final PersonManager personManager;
     private final Middleware middleware;
+    
 
     public DefaultModel(AtomicBoolean running) {
         personManager = new PersonManager("people.txt");
@@ -39,12 +43,29 @@ public class DefaultModel implements Model {
 
     @Override
     public boolean sendCommand(String[] args) {
-        return middleware.check(args);
+        if (middleware.check(args))
+            notifyObservers();
+        return false;
     }
 
     @Override
     public void writeToFiles() {
         bookshelf.saveBooks("books.txt");
         personManager.savePeople("people.txt");
+    }
+
+    @Override
+    public List<Book> getBooks() {
+        return bookshelf.getBooks();
+    }
+
+    @Override
+    public List<Person> getPeople() {
+        return personManager.getPeople();
+    }
+
+    @Override
+    public void notifyObservers() {
+        observers.forEach(o -> o.update(this));
     }
 }

@@ -1,6 +1,7 @@
 package MVC.objects;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonManager {
 
@@ -39,6 +40,10 @@ public class PersonManager {
 
     public int getSize() {
         return people.size();
+    }
+
+    public List<Person> getPeople() {
+        return people;
     }
 
     // zwraca najwyzszy wczytany kod

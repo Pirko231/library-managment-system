@@ -27,4 +27,9 @@ public class TerminalView implements View {
 
         return Optional.empty();
     }
+
+    @Override
+    public void update(Model model) {
+        
+    }
 }
