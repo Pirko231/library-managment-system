@@ -13,6 +13,18 @@ import java.util.Optional;
 import MVC.gui.*;
 
 public class GUIView implements View {
+
+    private Controller controller;
+    private Model model;
+
+    public GUIView(Controller controller, Model model) {
+        this();
+
+        this.controller = controller;
+        this.model = model;
+        model.addObserver((Observer)this);
+    }
+
     public GUIView() {
         JFrame frame = new JFrame("Tytul");
         frame.setSize(600,600);
@@ -57,6 +69,6 @@ public class GUIView implements View {
     }
 
     public void update(Model model) {
-        
+
     }
 }

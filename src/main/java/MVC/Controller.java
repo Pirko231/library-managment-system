@@ -8,8 +8,8 @@ public class Controller {
     private Model model;
     private AtomicBoolean isActive;
 
-    public Controller(View view, Model model, AtomicBoolean isActive) {
-        this.view = view;
+    public Controller(Model model, AtomicBoolean isActive) {
+        view = new GUIView();
         this.model = model;
         this.isActive = isActive;
     }
@@ -18,12 +18,12 @@ public class Controller {
         return isActive.get();
     }
 
-    public void update() {
-        var command = view.getCommand();
-        if (command.isPresent()) {
-            model.sendCommand(command.get());
+    public void addBook(String title, String author) {
+        runChain(("add book " + title + " : " + author).split(" "));
+    }
 
-        }
+    public void addPerson(String name, String surname) {
+        runChain(("add person " + name + ":" + surname).split(" "));
     }
 
     public void runChain(String[] args) {
