@@ -9,8 +9,8 @@ public class Controller {
     private AtomicBoolean isActive;
 
     public Controller(Model model, AtomicBoolean isActive) {
-        view = new GUIView();
         this.model = model;
+        view = new GUIView(this, model);
         this.isActive = isActive;
     }
 

@@ -13,42 +13,45 @@ import java.util.Optional;
 import MVC.gui.*;
 
 public class GUIView implements View {
-
+    // MVC
     private Controller controller;
     private Model model;
 
-    public GUIView(Controller controller, Model model) {
-        this();
+    // swing
+    private JPanel categoryObjectPanel;
+    private CategoryGroup categoryGroup;
+    private CategoryObjectGroup books;
+    private CategoryObjectGroup people;
 
+    public GUIView(Controller controller, Model model) {
         this.controller = controller;
         this.model = model;
         model.addObserver((Observer)this);
-    }
 
-    public GUIView() {
         JFrame frame = new JFrame("Tytul");
         frame.setSize(600,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
         CardLayout cl = new CardLayout();
-        JPanel categoryObjectPanel = new JPanel(cl);
+        categoryObjectPanel = new JPanel(cl);
 
 
         Content content = null;
         CategoryObject.setCurrentContent(content);
 
-        CategoryGroup categoryGroup = new CategoryGroup(
+        categoryGroup = new CategoryGroup(
+            new Category("Add book", c -> controller.addBook("Name", "name")),
             new Category("Books", c -> cl.show(categoryObjectPanel, "BOOKS")),
             new Category("People", c -> cl.show(categoryObjectPanel, "PEOPLE"))
         );
 
-        CategoryObjectGroup books = new CategoryObjectGroup("BOOKS",
+        books = new CategoryObjectGroup("BOOKS",
             new CategoryObject("Alwernia", new BookContent()),
             new CategoryObject("Krzeszowice", new BookContent())
         );
 
-        CategoryObjectGroup people = new CategoryObjectGroup("PEOPLE",
+        people = new CategoryObjectGroup("PEOPLE",
             new CategoryObject("Data1", new BookContent()),
             new CategoryObject("data2", new BookContent()),
             new CategoryObject("data3", new BookContent())
@@ -69,6 +72,6 @@ public class GUIView implements View {
     }
 
     public void update(Model model) {
-
+        books.setContent(CategoryObject.toCategoryObject(model.getBooks()));
     }
 }
