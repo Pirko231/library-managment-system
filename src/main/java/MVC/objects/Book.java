@@ -2,7 +2,11 @@ package MVC.objects;
 
 import java.util.Objects;
 
-public class Book {
+import MVC.gui.Categorizable;
+import MVC.gui.CategoryObject;
+import MVC.gui.Content;
+
+public class Book implements Categorizable {
 
     private String title;
     private String author;
@@ -15,6 +19,11 @@ public class Book {
     public Book(String title, String author) {
         this.title = title;
         this.author = author;
+    }
+
+    @Override
+    public CategoryObject asCategoryObject() {
+        return new CategoryObject(title, null);
     }
 
     @Override

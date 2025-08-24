@@ -7,11 +7,14 @@ import javax.swing.JPanel;
 
 public class CategoryObjectGroup extends JPanel {
     private String code;
+    private CategoryAddObject addButton;
 
-    public CategoryObjectGroup(String code, CategoryObject... objects) {
+    public CategoryObjectGroup(String code, CategoryAddObject addButton, CategoryObject... objects) {
         this.code = code;
+        this.addButton = addButton;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentY(LEFT_ALIGNMENT);
+        add(addButton);
         for (var object : objects) {
             add(object);
         }
@@ -25,8 +28,10 @@ public class CategoryObjectGroup extends JPanel {
 
     public void setContent(List<? extends CategoryObject> content) {
         removeAll();
+        add(addButton);
         for (var o : content) {
             add(o);
         }
+        repaint();
     }
 }

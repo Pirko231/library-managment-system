@@ -7,7 +7,7 @@ public class TerminalView implements View {
 
     private Scanner scanner = new Scanner(System.in);
 
-    @Override
+
     public Optional<String[]> getCommand() {
 
         if (scanner.hasNextLine()) {

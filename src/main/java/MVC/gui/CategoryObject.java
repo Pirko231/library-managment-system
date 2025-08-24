@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import MVC.objects.Book;
+import MVC.objects.Person;
 
 public class CategoryObject extends JButton {
     static Content currentContent;
@@ -28,9 +29,9 @@ public class CategoryObject extends JButton {
         currentContent = content;
     }
 
-    public static List<CategoryObject> toCategoryObject(List<Book> books) {
-        var stream = books.stream();
-        List<CategoryObject> list = stream.map(b -> new CategoryObject(b.getTitle(), currentContent))
+    public static List<CategoryObject> toCategoryObject(List<? extends Categorizable> objects) {
+        var stream = objects.stream();
+        List<CategoryObject> list = stream.map(Categorizable::asCategoryObject)
             .collect(Collectors.toList());
         return list;
     }

@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Person {
+import MVC.gui.Categorizable;
+import MVC.gui.CategoryObject;
+import MVC.gui.Content;
+
+public class Person implements Categorizable {
 
     int code = 0;
     private String name;
@@ -14,6 +18,19 @@ public class Person {
     public Person(String name, String surname) {
         this.name = name;
         this.surname = surname;
+    }
+
+    @Override
+    public CategoryObject asCategoryObject() {
+        return new CategoryObject(name, null);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     @Override

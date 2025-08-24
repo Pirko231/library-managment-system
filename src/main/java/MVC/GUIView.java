@@ -18,6 +18,7 @@ public class GUIView implements View {
     private Model model;
 
     // swing
+    JFrame frame = new JFrame("Tytul");
     private JPanel categoryObjectPanel;
     private CategoryGroup categoryGroup;
     private CategoryObjectGroup books;
@@ -28,7 +29,7 @@ public class GUIView implements View {
         this.model = model;
         model.addObserver((Observer)this);
 
-        JFrame frame = new JFrame("Tytul");
+        //frame = ;
         frame.setSize(600,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -41,17 +42,18 @@ public class GUIView implements View {
         CategoryObject.setCurrentContent(content);
 
         categoryGroup = new CategoryGroup(
-            new Category("Add book", c -> controller.addBook("Name", "name")),
             new Category("Books", c -> cl.show(categoryObjectPanel, "BOOKS")),
             new Category("People", c -> cl.show(categoryObjectPanel, "PEOPLE"))
         );
 
         books = new CategoryObjectGroup("BOOKS",
+            new CategoryAddObject(ca -> controller.addBook("Title", "title")),
             new CategoryObject("Alwernia", new BookContent()),
             new CategoryObject("Krzeszowice", new BookContent())
         );
 
         people = new CategoryObjectGroup("PEOPLE",
+            new CategoryAddObject(ca -> controller.addPerson("Name", "name")),
             new CategoryObject("Data1", new BookContent()),
             new CategoryObject("data2", new BookContent()),
             new CategoryObject("data3", new BookContent())
@@ -67,11 +69,9 @@ public class GUIView implements View {
         frame.getContentPane().add(BorderLayout.WEST, splitPane);
     }
 
-    public Optional<String[]> getCommand() {
-        return Optional.empty();
-    }
-
     public void update(Model model) {
         books.setContent(CategoryObject.toCategoryObject(model.getBooks()));
+        people.setContent(CategoryObject.toCategoryObject(model.getPeople()));
+        frame.repaint();
     }
 }
