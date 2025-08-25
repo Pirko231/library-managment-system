@@ -6,8 +6,23 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class CategoryAddObject extends JButton {
+    static ContentRef currentContent;
+    Content content;
+
+    public static void setCurrentContent(ContentRef content) {
+        currentContent = content;
+    }
+
     public CategoryAddObject(ActionListener onClicked) {
         super("add");
-        addActionListener(onClicked);
+        content = new AddBookContent(onClicked);
+
+        addActionListener(new ChangeCurrentContent());
+    }
+
+    private class ChangeCurrentContent implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            currentContent.content = content;
+        }
     }
 }

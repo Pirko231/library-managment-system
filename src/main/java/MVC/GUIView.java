@@ -30,7 +30,6 @@ public class GUIView implements View {
         model.addObserver((Observer)this);
 
         //frame = ;
-        frame.setSize(600,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
@@ -38,8 +37,10 @@ public class GUIView implements View {
         categoryObjectPanel = new JPanel(cl);
 
 
-        Content content = null;
+        ContentRef content = new ContentRef();
+        content.content = new AddBookContent(c -> controller.addBook("title", "author"));
         CategoryObject.setCurrentContent(content);
+        CategoryAddObject.setCurrentContent(content);
 
         categoryGroup = new CategoryGroup(
             new Category("Books", c -> cl.show(categoryObjectPanel, "BOOKS")),
@@ -64,9 +65,10 @@ public class GUIView implements View {
 
         JSplitPane splitCategories = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(categoryGroup), categoryObjectPanel);
         
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitCategories, (JPanel)content);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitCategories, (JPanel)content.content);
         
-        frame.getContentPane().add(BorderLayout.WEST, splitPane);
+        frame.getContentPane().add(BorderLayout.CENTER, splitPane); // west
+        frame.setSize(600,600);
     }
 
     public void update(Model model) {

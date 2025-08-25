@@ -14,7 +14,7 @@ import MVC.objects.Book;
 import MVC.objects.Person;
 
 public class CategoryObject extends JButton {
-    static Content currentContent;
+    static ContentRef currentContent;
 
     //private JButton button;
     private Content onClicked;
@@ -25,7 +25,7 @@ public class CategoryObject extends JButton {
         this.onClicked = onClicked;
     }
 
-    public static void setCurrentContent(Content content) {
+    public static void setCurrentContent(ContentRef content) {
         currentContent = content;
     }
 
@@ -38,7 +38,7 @@ public class CategoryObject extends JButton {
 
     private class ClickListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            currentContent = onClicked;
+            currentContent.content = onClicked;
         }
     }
 }
