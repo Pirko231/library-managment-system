@@ -38,7 +38,7 @@ public class GUIView implements View {
 
 
         ContentRef content = new ContentRef();
-        content.content = new AddBookContent((s1, s2) -> {controller.addBook(s1, s2); return null;});
+        content.setContent(new AddBookContent((s1, s2) -> {controller.addBook(s1, s2); return null;}));
         CategoryObject.setCurrentContent(content);
         CategoryAddObject.setCurrentContent(content);
 
@@ -48,13 +48,13 @@ public class GUIView implements View {
         );
 
         books = new CategoryObjectGroup("BOOKS",
-            new CategoryAddObject(ca -> controller.addBook("Title", "title")),
+            new CategoryAddObject((s1,s2) -> {controller.addBook(s1, s2); return null;}),
             new CategoryObject("Alwernia", new BookContent()),
             new CategoryObject("Krzeszowice", new BookContent())
         );
 
         people = new CategoryObjectGroup("PEOPLE",
-            new CategoryAddObject(ca -> controller.addPerson("Name", "name")),
+            new CategoryAddObject((s1,s2) -> {controller.addPerson(s1, s2); return null;}),
             new CategoryObject("Data1", new BookContent()),
             new CategoryObject("data2", new BookContent()),
             new CategoryObject("data3", new BookContent())
@@ -65,7 +65,7 @@ public class GUIView implements View {
 
         JSplitPane splitCategories = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(categoryGroup), categoryObjectPanel);
         
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitCategories, (JPanel)content.content);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitCategories, (JPanel)content);
         
         frame.getContentPane().add(BorderLayout.CENTER, splitPane); // west
         frame.setSize(600,600);

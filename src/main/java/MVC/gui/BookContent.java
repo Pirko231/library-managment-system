@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class BookContent extends JPanel implements Content {
+public class BookContent extends Content {
 
     private String bookName;
     private String authorName; // zamiast mozna trzymac po prostu autora?

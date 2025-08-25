@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class AddBookContent extends JPanel implements Content {
+public class AddBookContent extends Content {
     private String bookName;
     private String authorName; // zamiast mozna trzymac po prostu autora?
     

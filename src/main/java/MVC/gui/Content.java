@@ -2,9 +2,15 @@ package MVC.gui;
 
 import java.awt.Graphics;
 
-// klasa ktora pozwala wyswietlac informacje o obecnym produkcie
-public interface Content {
-    public void paintComponent(Graphics g);
+import javax.swing.JPanel;
 
-    public void update(String bookName, String authorName);
+import java.awt.Component;
+
+// klasa ktora pozwala wyswietlac informacje o obecnym produkcie
+public abstract class Content extends JPanel {
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
+
+    public abstract void update(String bookName, String authorName);
 }

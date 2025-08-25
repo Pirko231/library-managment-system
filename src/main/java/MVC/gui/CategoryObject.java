@@ -38,7 +38,7 @@ public class CategoryObject extends JButton {
 
     private class ClickListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            currentContent.content = onClicked;
+            currentContent.setContent(onClicked);
         }
     }
 }
