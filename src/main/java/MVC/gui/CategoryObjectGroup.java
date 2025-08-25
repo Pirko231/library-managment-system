@@ -32,6 +32,7 @@ public class CategoryObjectGroup extends JPanel {
         for (var o : content) {
             add(o);
         }
+        revalidate();
         repaint();
     }
 }

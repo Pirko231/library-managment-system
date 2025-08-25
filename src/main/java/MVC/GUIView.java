@@ -38,7 +38,7 @@ public class GUIView implements View {
 
 
         ContentRef content = new ContentRef();
-        content.content = new AddBookContent(c -> controller.addBook("title", "author"));
+        content.content = new AddBookContent((s1, s2) -> {controller.addBook(s1, s2); return null;});
         CategoryObject.setCurrentContent(content);
         CategoryAddObject.setCurrentContent(content);
 

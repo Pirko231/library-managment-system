@@ -15,7 +15,7 @@ public class CategoryAddObject extends JButton {
 
     public CategoryAddObject(ActionListener onClicked) {
         super("add");
-        content = new AddBookContent(onClicked);
+        //content = new AddBookContent(onClicked);
 
         addActionListener(new ChangeCurrentContent());
     }

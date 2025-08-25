@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -25,7 +27,7 @@ public class AddBookContent extends JPanel implements Content {
     JComboBox<String> ownerList = new JComboBox<>();
     JButton addButton = new JButton("Add");
 
-    public AddBookContent(ActionListener onAdd) {
+    public AddBookContent(BiFunction<String,String,Void> addBook) {
         bookName = "Empty name";
         authorName = "Empty name";
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -35,7 +37,7 @@ public class AddBookContent extends JPanel implements Content {
         nameField.setMaximumSize(new Dimension(Integer.MAX_VALUE, nameField.getPreferredSize().height));
         authorField.setMaximumSize(new Dimension(Integer.MAX_VALUE, authorField.getPreferredSize().height));
 
-        addButton.addActionListener(onAdd);
+        addButton.addActionListener(e -> {bookName = nameField.getText(); authorName = authorField.getText(); nameField.setText(""); authorField.setText(""); addBook.apply(bookName, authorName);});
 
         add(new JLabel("Nazwa książki:"));
         add(nameField);
