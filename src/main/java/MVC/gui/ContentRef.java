@@ -12,7 +12,9 @@ public class ContentRef extends JPanel {
     public void setContent(Content content) {
         this.content = content;
         removeAll();
-        add(this.content);
+        if (content != null) {
+            add(this.content);
+        }
         revalidate();
         repaint();
     }
