@@ -14,9 +14,9 @@ public class CategoryAddObject extends JButton {
         currentContent = content;
     }
 
-    public CategoryAddObject(BiFunction<String, String, Void> onAdd) {
+    public CategoryAddObject(Content type) {
         super("add");
-        content = new AddBookContent(onAdd);
+        content = type;
 
         addActionListener(new ChangeCurrentContent());
     }

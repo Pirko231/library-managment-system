@@ -48,16 +48,11 @@ public class GUIView implements View {
         );
 
         books = new CategoryObjectGroup("BOOKS",
-            new CategoryAddObject((s1,s2) -> {controller.addBook(s1, s2); return null;}),
-            new CategoryObject("Alwernia", new BookContent()),
-            new CategoryObject("Krzeszowice", new BookContent())
+            new CategoryAddObject(new AddBookContent((s1,s2) -> {controller.addBook(s1, s2); return null;}))
         );
 
         people = new CategoryObjectGroup("PEOPLE",
-            new CategoryAddObject((s1,s2) -> {controller.addPerson(s1, s2); return null;}),
-            new CategoryObject("Data1", new BookContent()),
-            new CategoryObject("data2", new BookContent()),
-            new CategoryObject("data3", new BookContent())
+            new CategoryAddObject(new AddPersonContent((s1,s2) -> {controller.addPerson(s1, s2); return null;}))
         );
 
         categoryObjectPanel.add(books, books.getCode());

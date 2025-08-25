@@ -17,6 +17,7 @@ public class AddBookMiddleware extends Middleware {
         {
             Book book = handleInput(args);
             bookshelf.addBook(book);
+            System.out.println("Book was added");
         }
         return checkNext(args);
     }
