@@ -1,5 +1,6 @@
 package MVC.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import MVC.gui.Categorizable;
 import MVC.gui.CategoryObject;
 import MVC.gui.Content;
 
-public class Person implements Categorizable {
+public class Person implements Categorizable, Serializable {
 
     int code = 0;
     private String name;

@@ -26,8 +26,8 @@ public class DefaultModel extends Model {
     
 
     public DefaultModel(AtomicBoolean running) {
-        personManager = new PersonManager("people.txt");
-        bookshelf = new Bookshelf("books.txt", personManager);
+        personManager = new PersonManager("people.ser");
+        bookshelf = new Bookshelf("books.ser", personManager);
         middleware = Middleware.link(
                 new AddBookMiddleware(bookshelf),
                 new AddPersonMiddleware(personManager),
@@ -51,8 +51,8 @@ public class DefaultModel extends Model {
     @Override
     public void writeToFiles() {
         System.out.println("Saving data");
-        bookshelf.saveBooks("books.txt");
-        personManager.savePeople("people.txt");
+        bookshelf.saveBooks("books.ser");
+        personManager.savePeople("people.ser");
     }
 
     @Override

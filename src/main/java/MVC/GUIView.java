@@ -65,6 +65,7 @@ public class GUIView implements View {
         
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitCategories, (JPanel)content);
         
+        update(model);
         frame.getContentPane().add(BorderLayout.CENTER, splitPane); // west
         frame.setSize(600,600);
     }
@@ -80,7 +81,7 @@ public class GUIView implements View {
             
         }
         public void windowClosed(WindowEvent e) {
-            
+
         }
         public void windowClosing(WindowEvent e) {
             controller.writeToFiles();

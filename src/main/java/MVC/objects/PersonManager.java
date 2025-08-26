@@ -1,5 +1,7 @@
 package MVC.objects;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,12 +75,13 @@ public class PersonManager {
     }
 
     public void savePeople(String filename) {
+        
         try {
-            java.io.Writer writer = new java.io.FileWriter(filename);
+            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
             for (Person person : people) {
-                writer.write(person.getHash() + "\n");
+                stream.writeObject(person);
             }
-            writer.close();
+            stream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,7 +1,15 @@
 package MVC.objects;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Bookshelf {
 
@@ -56,43 +64,46 @@ public class Bookshelf {
     }
 
     private void loadBooks(String fileName) {
-        java.io.File file = new java.io.File(fileName);
-        file.setReadable(true);
-        if (file.canRead()) {
-            try {
-                java.util.Scanner fileScanner = new java.util.Scanner(file);
-                String title = new String();
-                String author = new String();
-                while (fileScanner.hasNext()) {
-                    String line = fileScanner.nextLine();
-                    title = line.substring(1, line.indexOf(','));
-                    author = line.substring(line.indexOf(',') + 1, line.indexOf('}'));
-                    String owner = line.substring(line.indexOf("Owner = ") + 8, line.length());
-                    Book b = new Book(title, author);
-                    var o = personManager.findPerson(owner);
-                    b.setOwner(o);
-                    o.addBook(b);
-                    books.add(b);
+        ObjectInputStream objectInputStream = null;
+        try {
+            objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
+
+            while (true) {
+                Book user = (Book)objectInputStream.readObject();
+                books.add(user);    
+            }
+
+        } catch(EOFException e){
+            for (Book book : books) {
+                System.out.println(book);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (objectInputStream != null) {
+                try {
+                    objectInputStream.close();
                 }
-                fileScanner.close();
-            } catch (Exception e) {
-                System.out.println("File didn't open: " + fileName);
+                catch(Exception e) {
+                    
+                }
             }
         }
     }
 
     public void saveBooks(String filename) {
         try {
-            java.io.FileWriter writer = new java.io.FileWriter(filename);
+            // java.io.FileWriter writer = new java.io.FileWriter(filename);
+            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
             for (Book book : books) {
                 try {
-                    writer.write(book.toString() + "\n");
+                    stream.writeObject(book);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
 
-            writer.close();
+            stream.close();
         } catch (Exception e) {
         }
 

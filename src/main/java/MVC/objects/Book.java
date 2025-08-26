@@ -1,5 +1,6 @@
 package MVC.objects;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import MVC.gui.BookContent;
@@ -7,7 +8,7 @@ import MVC.gui.Categorizable;
 import MVC.gui.CategoryObject;
 import MVC.gui.Content;
 
-public class Book implements Categorizable {
+public class Book implements Categorizable, Serializable {
 
     private String title;
     private String author;
