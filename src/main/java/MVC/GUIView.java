@@ -32,6 +32,7 @@ public class GUIView implements View {
         model.addObserver((Observer)this);
 
         BookContent.setPeople(model.getPeople());
+        PersonContent.setBooks(model.getBooks());
 
         //frame = ;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
