@@ -5,6 +5,9 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import MVC.objects.Person;
+import MVC.objects.PersonManager;
+
 public class CategoryObjectGroup extends JPanel {
     private String code;
     private CategoryAddObject addButton;
@@ -34,5 +37,9 @@ public class CategoryObjectGroup extends JPanel {
         }
         revalidate();
         repaint();
+    }
+
+    public void fetchPeople(List<Person> people) {
+        
     }
 }

@@ -20,7 +20,7 @@ public class GUIView implements View {
     private Model model;
 
     // swing
-    JFrame frame = new JFrame("Tytul");
+    JFrame frame = new JFrame("Biblioteka");
     private JPanel categoryObjectPanel;
     private CategoryGroup categoryGroup;
     private CategoryObjectGroup books;
@@ -30,6 +30,8 @@ public class GUIView implements View {
         this.controller = controller;
         this.model = model;
         model.addObserver((Observer)this);
+
+        BookContent.setPeople(model.getPeople());
 
         //frame = ;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,6 +75,7 @@ public class GUIView implements View {
     public void update(Model model) {
         books.setContent(CategoryObject.toCategoryObject(model.getBooks()));
         people.setContent(CategoryObject.toCategoryObject(model.getPeople()));
+        books.fetchPeople(model.getPeople());
         frame.repaint();
     }
 

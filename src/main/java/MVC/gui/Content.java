@@ -19,7 +19,6 @@ public abstract class Content extends JPanel {
 
     protected JTextField nameField = new JTextField(20);
     protected JTextField authorField = new JTextField(20);
-    private JComboBox<String> ownerList = new JComboBox<>();
 
     protected Content(String box1, String box2) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
