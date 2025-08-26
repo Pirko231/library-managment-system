@@ -2,6 +2,8 @@ package MVC;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Optional;
 
 import javax.swing.JFrame;
@@ -31,6 +33,7 @@ public class GUIView implements View {
 
         //frame = ;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new CloseEventListener());
         frame.setVisible(true);
 
         CardLayout cl = new CardLayout();
@@ -70,5 +73,29 @@ public class GUIView implements View {
         books.setContent(CategoryObject.toCategoryObject(model.getBooks()));
         people.setContent(CategoryObject.toCategoryObject(model.getPeople()));
         frame.repaint();
+    }
+
+    private class CloseEventListener implements WindowListener {
+        public void windowActivated(WindowEvent e) {
+            
+        }
+        public void windowClosed(WindowEvent e) {
+            
+        }
+        public void windowClosing(WindowEvent e) {
+            controller.writeToFiles();
+        }
+        public void windowDeactivated(WindowEvent e) {
+
+        }
+        public void windowDeiconified(WindowEvent e) {
+
+        }
+        public void windowIconified(WindowEvent e) {
+
+        }
+        public void windowOpened(WindowEvent e) {
+
+        }
     }
 }

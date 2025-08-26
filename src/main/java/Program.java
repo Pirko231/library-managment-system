@@ -16,11 +16,5 @@ public class Program {
             controller.runChain(args);
             return;
         }
-
-        /*while (controller.running()) {
-            controller.update();
-        }*/
-        
-        controller.writeToFiles();
     }
 }

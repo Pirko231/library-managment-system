@@ -50,6 +50,7 @@ public class DefaultModel extends Model {
 
     @Override
     public void writeToFiles() {
+        System.out.println("Saving data");
         bookshelf.saveBooks("books.txt");
         personManager.savePeople("people.txt");
     }
