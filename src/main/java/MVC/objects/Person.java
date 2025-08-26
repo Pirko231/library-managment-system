@@ -8,6 +8,7 @@ import java.util.Objects;
 import MVC.gui.Categorizable;
 import MVC.gui.CategoryObject;
 import MVC.gui.Content;
+import MVC.gui.PersonContent;
 
 public class Person implements Categorizable, Serializable {
 
@@ -23,7 +24,7 @@ public class Person implements Categorizable, Serializable {
 
     @Override
     public CategoryObject asCategoryObject() {
-        return new CategoryObject(name, null);
+        return new CategoryObject(name, new PersonContent(this));
     }
 
     public String getName() {
@@ -32,6 +33,14 @@ public class Person implements Categorizable, Serializable {
 
     public String getSurname() {
         return surname;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     @Override

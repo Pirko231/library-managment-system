@@ -71,6 +71,8 @@ public class PersonManager {
         } catch (Exception e) {
             System.out.println("File didn't open: " + filename);
         }
+        System.out.print("People: ");
+        System.out.println(people);
         return maxCode;
     }
 
