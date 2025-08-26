@@ -30,8 +30,8 @@ public class DefaultModel extends Model {
     
 
     public DefaultModel(AtomicBoolean running) {
-        personManager = null;
-        bookshelf = null;
+        personManager = new PersonManager();
+        bookshelf = new Bookshelf(personManager);
         try {
             ObjectInputStream stream = new ObjectInputStream(new FileInputStream("data.ser"));
             bookshelf = (Bookshelf)stream.readObject();

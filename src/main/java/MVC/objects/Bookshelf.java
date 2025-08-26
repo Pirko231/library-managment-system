@@ -17,10 +17,9 @@ public class Bookshelf implements Serializable {
     private ArrayList<Book> books;
     private PersonManager personManager;
 
-    public Bookshelf(String fileName, PersonManager personManager) {
+    public Bookshelf(PersonManager personManager) {
         books = new ArrayList<>();
         this.personManager = personManager;
-        loadBooks(fileName);
     }
 
     public void addBook(Book book) {
@@ -62,51 +61,5 @@ public class Bookshelf implements Serializable {
 
     public List<Book> getBooks() {
         return books;
-    }
-
-    private void loadBooks(String fileName) {
-        ObjectInputStream objectInputStream = null;
-        try {
-            objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
-
-            while (true) {
-                Book user = (Book)objectInputStream.readObject();
-                books.add(user);    
-            }
-
-        } catch(EOFException e){
-            for (Book book : books) {
-                System.out.println(book);
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (objectInputStream != null) {
-                try {
-                    objectInputStream.close();
-                }
-                catch(Exception e) {
-                    
-                }
-            }
-        }
-    }
-
-    public void saveBooks(String filename) {
-        try {
-            // java.io.FileWriter writer = new java.io.FileWriter(filename);
-            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(filename));
-            for (Book book : books) {
-                try {
-                    stream.writeObject(book);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-            stream.close();
-        } catch (Exception e) {
-        }
-
     }
 }

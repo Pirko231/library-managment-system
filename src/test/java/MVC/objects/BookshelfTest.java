@@ -7,7 +7,7 @@ public class BookshelfTest {
     
     @Test
     public void testAddBook() {
-        Bookshelf bookshelf = new Bookshelf("", null);
+        Bookshelf bookshelf = new Bookshelf(null);
         assertEquals(0, bookshelf.getSize());
         bookshelf.addBook(new Book());
         assertEquals(1, bookshelf.getSize());
@@ -15,7 +15,7 @@ public class BookshelfTest {
 
     @Test
     public void testRemoveBook() {
-        Bookshelf bookshelf = new Bookshelf("", null);
+        Bookshelf bookshelf = new Bookshelf(null);
         Book b = new Book();
         bookshelf.addBook(b);
         assertEquals(true, bookshelf.removeBook(b));
@@ -24,7 +24,7 @@ public class BookshelfTest {
 
     @Test
     public void testFindBook() {
-        Bookshelf bookshelf = new Bookshelf("", null);
+        Bookshelf bookshelf = new Bookshelf(null);
         Book b = new Book();
         bookshelf.addBook(b);
         assertEquals(b, bookshelf.findBook(b.getTitle()));

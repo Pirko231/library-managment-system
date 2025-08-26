@@ -20,7 +20,7 @@ public class AddPersonContent extends Content {
     public AddPersonContent(BiFunction<String,String,Void> addBook) {
         super("Imię", "Nazwisko");
 
-        addButton.addActionListener(e -> {bookName = nameField.getText(); authorName = authorField.getText(); nameField.setText(""); authorField.setText(""); addBook.apply(bookName, authorName);});
+        addButton.addActionListener(e -> {addBook.apply(nameField.getText(), authorField.getText()); nameField.setText(""); authorField.setText("");});
         add(addButton);
     }
 

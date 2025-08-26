@@ -18,8 +18,6 @@ public class PersonContent extends Content {
         this.person = person;
         nameField.setText(person.getName());
         authorField.setText(person.getSurname());
-        bookName = "Empty name";
-        authorName = "Empty name";
 
         modifyButton.addActionListener(new ModifyAction());
         add(modifyButton);
@@ -28,19 +26,6 @@ public class PersonContent extends Content {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-    }
-
-    public void update(String bookName, String authorName) {
-        this.bookName = bookName;
-        this.authorName = authorName;
-    }
-
-    public void setBookName(String name) {
-        bookName = name;
-    }
-
-    public void setAuthorName(String name) {
-        authorName = name;
     }
 
     private class ModifyAction implements ActionListener {

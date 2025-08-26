@@ -23,18 +23,13 @@ public class AddBookContent extends Content {
     public AddBookContent(BiFunction<String,String,Void> addBook) {
         super("Książka", "Autor");
 
-        addButton.addActionListener(e -> {bookName = nameField.getText(); authorName = authorField.getText(); nameField.setText(""); authorField.setText(""); addBook.apply(bookName, authorName);});
+        addButton.addActionListener(e -> {addBook.apply(nameField.getText(), authorField.getText()); nameField.setText(""); authorField.setText("");});
         add(addButton);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-    }
-
-    public void update(String bookName, String authorName) {
-        this.bookName = bookName;
-        this.authorName = authorName;
     }
 
     private class FetchOwners implements ActionListener {

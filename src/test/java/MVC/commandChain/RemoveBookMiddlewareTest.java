@@ -13,8 +13,8 @@ public class RemoveBookMiddlewareTest {
     
     @Test
     public void testCheck() {
-        PersonManager pManager = new PersonManager("");
-        Bookshelf bookshelf = new Bookshelf("", pManager);
+        PersonManager pManager = new PersonManager();
+        Bookshelf bookshelf = new Bookshelf(pManager);
         RemoveBookMiddleware bMiddleware = new RemoveBookMiddleware(bookshelf);
         
         // jednowyrazowy

@@ -9,7 +9,7 @@ public class AddPersonMiddlewareTest {
     
     @Test
     public void testCheck() {
-        PersonManager personManager = new PersonManager("");
+        PersonManager personManager = new PersonManager();
         AddPersonMiddleware pMiddleware = new AddPersonMiddleware(personManager);
         pMiddleware.check("add person Name:Surname".split(" "));
         assertEquals(personManager.findPerson("{Name,Surname}_1"), new Person("Name", "Surname"));

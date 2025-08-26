@@ -16,17 +16,12 @@ import java.awt.Dimension;
 
 // klasa ktora pozwala wyswietlac informacje o obecnym produkcie
 public abstract class Content extends JPanel {
-    protected String bookName;
-    protected String authorName;
 
     protected JTextField nameField = new JTextField(20);
     protected JTextField authorField = new JTextField(20);
     private JComboBox<String> ownerList = new JComboBox<>();
-    //private JButton addButton = new JButton("Add");
 
     protected Content(String box1, String box2) {
-        bookName = "Empty name";
-        authorName = "Empty name";
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         nameField.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -46,10 +41,5 @@ public abstract class Content extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-    }
-
-    public void update(String bookName, String authorName) {
-        this.bookName = bookName;
-        this.authorName = authorName;
     }
 }

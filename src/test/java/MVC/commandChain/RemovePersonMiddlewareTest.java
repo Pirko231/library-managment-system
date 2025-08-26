@@ -12,8 +12,8 @@ public class RemovePersonMiddlewareTest {
     
     @Test
     public void testCheck() {
-        PersonManager pManager = new PersonManager("");
-        Bookshelf bookshelf = new Bookshelf("", pManager);
+        PersonManager pManager = new PersonManager();
+        Bookshelf bookshelf = new Bookshelf(pManager);
         RemovePersonMiddleware pMiddleware = new RemovePersonMiddleware(pManager);
 
         // test zwyklego usuwania

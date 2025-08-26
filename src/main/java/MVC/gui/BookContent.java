@@ -21,8 +21,6 @@ public class BookContent extends Content {
         this.book = book;
         nameField.setText(book.getTitle());
         authorField.setText(book.getAuthor());
-        bookName = "Empty name";
-        authorName = "Empty name";
 
         modifyButton.addActionListener(new ModifyAction());
         add(modifyButton);
@@ -33,17 +31,12 @@ public class BookContent extends Content {
         super.paintComponent(g);
     }
 
-    public void update(String bookName, String authorName) {
-        this.bookName = bookName;
-        this.authorName = authorName;
-    }
-
     public void setBookName(String name) {
-        bookName = name;
+        nameField.setText(name);
     }
 
     public void setAuthorName(String name) {
-        authorName = name;
+        authorField.setText(name);
     }
 
     private class ModifyAction implements ActionListener {

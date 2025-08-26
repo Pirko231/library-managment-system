@@ -12,8 +12,8 @@ public class RemoveOwnerMiddlewareTest {
 
     @Test
     public void testCheck() {
-        PersonManager pManager = new PersonManager("");
-        Bookshelf bookshelf = new Bookshelf("", pManager);
+        PersonManager pManager = new PersonManager();
+        Bookshelf bookshelf = new Bookshelf(pManager);
         RemoveOwnerMiddleware oMiddleware = new RemoveOwnerMiddleware(bookshelf);
 
         // jednowyrazowe

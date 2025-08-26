@@ -14,8 +14,8 @@ public class AddOwnerMiddlewareTest {
     
     @Test
     public void testCheck() {
-        PersonManager pManager = new PersonManager("");
-        Bookshelf bookshelf = new Bookshelf("", pManager);
+        PersonManager pManager = new PersonManager();
+        Bookshelf bookshelf = new Bookshelf(pManager);
         AddOwnerMiddleware oMiddleware = new AddOwnerMiddleware(bookshelf, pManager);
         oMiddleware.check("add owner some book : person".split(" ")); // na razie check jakiegos wyjatku
 
