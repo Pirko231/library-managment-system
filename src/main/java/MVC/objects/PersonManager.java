@@ -2,16 +2,17 @@ package MVC.objects;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonManager {
+public class PersonManager implements Serializable {
 
     private ArrayList<Person> people = new ArrayList<>();
     private int code = 0;
 
     public PersonManager(String filename) {
-        code = loadPeople(filename);
+        //code = loadPeople(filename);
     }
 
     public void addPerson(Person person) {

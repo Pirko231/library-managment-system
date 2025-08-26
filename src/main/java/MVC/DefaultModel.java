@@ -1,5 +1,9 @@
 package MVC;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -20,14 +24,24 @@ import MVC.objects.PersonManager;
 
 public class DefaultModel extends Model {
 
-    private final Bookshelf bookshelf;
-    private final PersonManager personManager;
+    private Bookshelf bookshelf;
+    private PersonManager personManager;
     private final Middleware middleware;
     
 
     public DefaultModel(AtomicBoolean running) {
-        personManager = new PersonManager("people.ser");
-        bookshelf = new Bookshelf("books.ser", personManager);
+        personManager = null;
+        bookshelf = null;
+        try {
+            ObjectInputStream stream = new ObjectInputStream(new FileInputStream("data.ser"));
+            bookshelf = (Bookshelf)stream.readObject();
+            personManager = (PersonManager)stream.readObject();
+            stream.close();
+        }
+        catch(Exception e) {
+
+        }
+        
         middleware = Middleware.link(
                 new AddBookMiddleware(bookshelf),
                 new AddPersonMiddleware(personManager),
@@ -51,8 +65,16 @@ public class DefaultModel extends Model {
     @Override
     public void writeToFiles() {
         System.out.println("Saving data");
-        bookshelf.saveBooks("books.ser");
-        personManager.savePeople("people.ser");
+        try {
+            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("data.ser"));
+            stream.writeObject(bookshelf);
+            stream.writeObject(personManager);
+            stream.close();
+        }
+        catch(Exception e) {
+
+        }
+
     }
 
     @Override
