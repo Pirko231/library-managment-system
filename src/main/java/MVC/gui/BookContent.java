@@ -26,7 +26,12 @@ class ComboBoxOwner {
 
     @Override
     public String toString() {
-        return name;
+        if (person != null) {
+            return person.getName() + " " + person.getSurname();
+        }
+        else {
+            return name;
+        }
     }
 }
 
@@ -74,15 +79,22 @@ public class BookContent extends Content {
 
     private void fetchPeople() {
         Person person = book.getOwner();
-        if (person != null) {
-            ownerList.addItem(new ComboBoxOwner(person.getName() + " " + person.getSurname(), person) );
-        }
         ownerList.addItem(new ComboBoxOwner("Brak", null));
+        if (person != null) {
+            var current = new ComboBoxOwner(person.getName() + " " + person.getSurname(), person);
+            ownerList.addItem(current);
+            ownerList.setSelectedItem(current);
+        }
         
 
         for (var p : people) {
-            if (p != null && !(p.getName() + " " + p.getSurname()).equals(ownerList.getItemAt(0).name)) {
-                ownerList.addItem(new ComboBoxOwner(p.getName() + " " + p.getSurname(), p));
+            if (p != null) {
+                if (person != null && (p.getName() + " " + p.getSurname()).equals(person.getName() + " " + person.getSurname())) {
+
+                } else {
+                    ownerList.addItem(new ComboBoxOwner(p.getName() + " " + p.getSurname(), p));
+                }
+                
             }
         }
     }
