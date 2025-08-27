@@ -1,5 +1,6 @@
 package MVC;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -63,10 +64,10 @@ public class DefaultModel extends Model {
     }
 
     @Override
-    public void writeToFiles() {
+    public void writeToFiles(File file) {
         System.out.println("Saving data");
         try {
-            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("data.ser"));
+            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(file));
             stream.writeObject(bookshelf);
             stream.writeObject(personManager);
             stream.close();

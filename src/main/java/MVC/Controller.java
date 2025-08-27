@@ -1,5 +1,6 @@
 package MVC;
 
+import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Controller {
@@ -30,7 +31,7 @@ public class Controller {
         model.sendCommand(args);
     }
 
-    public void writeToFiles() {
-        model.writeToFiles();
+    public void writeToFiles(File file) {
+        model.writeToFiles(file);
     }
 }

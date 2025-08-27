@@ -1,5 +1,6 @@
 package MVC;
 
+import java.io.File;
 import java.util.List;
 
 import MVC.objects.Book;
@@ -7,7 +8,7 @@ import MVC.objects.Person;
 
 public abstract class Model extends Observable {
 
-    public abstract void writeToFiles();
+    public abstract void writeToFiles(File file);
 
     public abstract boolean sendCommand(String[] args);
 
