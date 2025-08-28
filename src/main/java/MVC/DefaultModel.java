@@ -33,15 +33,7 @@ public class DefaultModel extends Model {
     public DefaultModel(AtomicBoolean running) {
         personManager = new PersonManager();
         bookshelf = new Bookshelf(personManager);
-        try {
-            ObjectInputStream stream = new ObjectInputStream(new FileInputStream("data.ser"));
-            bookshelf = (Bookshelf)stream.readObject();
-            personManager = (PersonManager)stream.readObject();
-            stream.close();
-        }
-        catch(Exception e) {
-
-        }
+        readFile(new File("data.ser"));
         
         middleware = Middleware.link(
                 new AddBookMiddleware(bookshelf),
@@ -61,6 +53,18 @@ public class DefaultModel extends Model {
         if (middleware.check(args))
             notifyObservers();
         return false;
+    }
+
+    public void readFile(File file) {
+        try {
+            ObjectInputStream stream = new ObjectInputStream(new FileInputStream("data.ser"));
+            bookshelf = (Bookshelf)stream.readObject();
+            personManager = (PersonManager)stream.readObject();
+            stream.close();
+        }
+        catch(Exception e) {
+
+        }
     }
 
     @Override

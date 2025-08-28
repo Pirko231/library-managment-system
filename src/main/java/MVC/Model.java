@@ -10,6 +10,8 @@ public abstract class Model extends Observable {
 
     public abstract void writeToFiles(File file);
 
+    public abstract void readFile(File file);
+
     public abstract boolean sendCommand(String[] args);
 
     public abstract List<Book> getBooks(); 

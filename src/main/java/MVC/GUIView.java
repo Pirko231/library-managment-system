@@ -19,12 +19,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.util.Optional;
 
 import MVC.gui.*;
@@ -36,6 +39,7 @@ public class GUIView implements View {
 
     // swing
     JFrame frame = new JFrame("Biblioteka");
+    JFileChooser fileChooser = new JFileChooser();
     private JPanel categoryObjectPanel;
     private CategoryGroup categoryGroup;
     private CategoryObjectGroup books;
@@ -60,9 +64,25 @@ public class GUIView implements View {
         JMenuBar menu = new JMenuBar();
         JMenuItem menuFile = new JMenuItem("Kopia zapasowa");
         menuFile.addActionListener(new Backup());
+        JMenuItem menuLoad = new JMenuItem("Załaduj dane");
+        menuLoad.addActionListener(e -> fileChooser.showOpenDialog(menuLoad));
         menu.add(menuFile);
+        menu.add(menuLoad);
         frame.setJMenuBar(menu);
 
+        var filter = new FileNameExtensionFilter("SER files", "ser");
+        fileChooser.setFileFilter(filter);
+        File backupDir = new File(System.getProperty("user.dir"), "backups");
+        if (!backupDir.exists()) {
+            backupDir.mkdirs();
+        }
+        if (backupDir.isDirectory()) {
+            System.out.println(backupDir.toPath());
+            System.out.println(backupDir.getAbsolutePath());
+            File newFile = new File("/home/szymek/Dokumenty/java/library-managment-system/target/classes/backups");
+            fileChooser.setCurrentDirectory(newFile);
+        }
+        fileChooser.addActionListener(new ChooseFile());
 
         ContentRef content = new ContentRef();
         content.setContent(new AddBookContent((s1, s2) -> {controller.addBook(s1, s2); return null;}));
@@ -108,6 +128,18 @@ public class GUIView implements View {
                 directory.mkdirs();
             }
             controller.writeToFiles(new File("backups/Backup " + LocalDate.now().toString() + " " + LocalTime.now().toString() + ".ser"));
+        }
+    }
+
+    private class ChooseFile implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            File f = fileChooser.getSelectedFile();
+            try(ObjectInputStream stream = new ObjectInputStream(new FileInputStream(f))) {
+                model.readFile(f);
+            } catch(Exception ex) {
+
+            }
+            
         }
     }
 

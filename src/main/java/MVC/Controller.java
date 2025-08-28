@@ -34,4 +34,8 @@ public class Controller {
     public void writeToFiles(File file) {
         model.writeToFiles(file);
     }
+
+    public void readFile(File file) {
+        model.readFile(file);
+    }
 }
