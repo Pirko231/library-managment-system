@@ -1,4 +1,5 @@
 
+import java.awt.EventQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import MVC.Controller;
@@ -10,11 +11,15 @@ public class Program {
     public static void main(String[] args) {
         AtomicBoolean running = new AtomicBoolean(true);
         Model model = new DefaultModel(running);
-        Controller controller = new Controller(model, running);
-
+    
         if (args.length > 0) {
-            controller.runChain(args);
+            new Controller(model, running).runChain(args);
             return;
         }
+    
+        EventQueue.invokeLater(() -> {
+            Controller controller = new Controller(model, running);
+            controller.startGui();   // whatever opens your first window
+        });
     }
 }

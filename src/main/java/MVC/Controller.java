@@ -11,12 +11,15 @@ public class Controller {
 
     public Controller(Model model, AtomicBoolean isActive) {
         this.model = model;
-        view = new GUIView(this, model);
         this.isActive = isActive;
     }
 
     public boolean running() {
         return isActive.get();
+    }
+
+    public void startGui() {
+        view = new GUIView(this, model);
     }
 
     public void addBook(String title, String author) {

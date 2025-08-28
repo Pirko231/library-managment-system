@@ -77,10 +77,7 @@ public class GUIView implements View {
             backupDir.mkdirs();
         }
         if (backupDir.isDirectory()) {
-            System.out.println(backupDir.toPath());
-            System.out.println(backupDir.getAbsolutePath());
-            File newFile = new File("/home/szymek/Dokumenty/java/library-managment-system/target/classes/backups");
-            fileChooser.setCurrentDirectory(newFile);
+            fileChooser.setCurrentDirectory(backupDir);
         }
         fileChooser.addActionListener(new ChooseFile());
 
