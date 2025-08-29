@@ -57,10 +57,11 @@ public class DefaultModel extends Model {
 
     public void readFile(File file) {
         try {
-            ObjectInputStream stream = new ObjectInputStream(new FileInputStream("data.ser"));
-            bookshelf = (Bookshelf)stream.readObject();
-            personManager = (PersonManager)stream.readObject();
+            ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
+            bookshelf.copy((Bookshelf)stream.readObject());
+            personManager.copy((PersonManager)stream.readObject());
             stream.close();
+            notifyObservers();
         }
         catch(Exception e) {
 

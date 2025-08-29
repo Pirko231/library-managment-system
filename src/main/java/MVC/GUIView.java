@@ -118,6 +118,17 @@ public class GUIView implements View {
         frame.repaint();
     }
 
+    private void revalidateAll() {
+        books.revalidate();
+        books.repaint();
+        people.revalidate();
+        people.repaint();
+        categoryObjectPanel.revalidate();
+        categoryObjectPanel.repaint();
+        frame.revalidate();
+        frame.repaint();
+    }
+
     private class Backup implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             File directory = new File("backups/");
@@ -132,7 +143,8 @@ public class GUIView implements View {
         public void actionPerformed(ActionEvent e) {
             File f = fileChooser.getSelectedFile();
             try(ObjectInputStream stream = new ObjectInputStream(new FileInputStream(f))) {
-                model.readFile(f);
+                controller.readFile(f);
+                revalidateAll();
             } catch(Exception ex) {
 
             }

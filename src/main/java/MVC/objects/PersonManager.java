@@ -15,6 +15,14 @@ public class PersonManager implements Serializable {
         
     }
 
+    // kopiuje osoby
+    public void copy(PersonManager pManager) {
+        people.clear();
+        for (Person person : pManager.getPeople()) {
+            people.add(person);
+        }
+    }
+
     public void addPerson(Person person) {
         code++;
         person.setCode(code);

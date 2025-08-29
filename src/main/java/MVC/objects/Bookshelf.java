@@ -22,6 +22,14 @@ public class Bookshelf implements Serializable {
         this.personManager = personManager;
     }
 
+    // kopiuje ksiazki z innej biblioteki i usuwa obecne
+    public void copy(Bookshelf bookshelf) {
+        books.clear();
+        for (Book book : bookshelf.getBooks()) {
+            books.add(book);
+        }
+    }
+
     public void addBook(Book book) {
         books.add(book);
     }
