@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import MVC.Controller;
 import MVC.objects.Book;
 import MVC.objects.Person;
 import MVC.objects.PersonManager;
@@ -37,14 +38,16 @@ class ComboBoxOwner {
 
 public class BookContent extends Content {
     private static List<Person> people;
+    private static Controller controller;
     private Book book;
     
 
-    private JButton modifyButton = new JButton("modyfikuj");
+    private JPanel buttons = new JPanel();
     private JComboBox<ComboBoxOwner> ownerList = new JComboBox<>();
 
-    public static void setPeople(List<Person> p) {
+    public static void setData(List<Person> p, Controller c) {
         people = p;
+        controller = c;
     }
 
     public BookContent(Book book) {
@@ -60,8 +63,16 @@ public class BookContent extends Content {
         ownerList.addActionListener(new SelectOwnerAction());
         fetchPeople();
         add(ownerList);
+        
+        buttons.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        JButton modifyButton = new JButton("Modyfikuj");
         modifyButton.addActionListener(new ModifyAction());
-        add(modifyButton);
+        JButton deleteButton = new JButton("Usuń");
+        deleteButton.addActionListener(new DeleteAction());
+        buttons.add(modifyButton);
+        buttons.add(deleteButton);
+        
+        add(buttons);
     }
 
     @Override
@@ -103,6 +114,12 @@ public class BookContent extends Content {
         public void actionPerformed(ActionEvent e) {
             book.setTitle(nameField.getText());
             book.setAuthor(authorField.getText());
+        }
+    }
+
+    private class DeleteAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            controller.removeBook(book.getTitle(), book.getAuthor());
         }
     }
 

@@ -50,7 +50,7 @@ public class GUIView implements View {
         this.model = model;
         model.addObserver((Observer)this);
 
-        BookContent.setPeople(model.getPeople());
+        BookContent.setData(model.getPeople(), controller);
         PersonContent.setBooks(model.getBooks());
 
         //frame = ;
