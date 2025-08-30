@@ -15,7 +15,7 @@ public class CategoryAddObject extends JButton {
     }
 
     public CategoryAddObject(Content type) {
-        super("add");
+        super("Dodaj");
         content = type;
 
         addActionListener(new ChangeCurrentContent());

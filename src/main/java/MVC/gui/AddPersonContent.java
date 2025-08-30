@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class AddPersonContent extends Content {
-    JButton addButton = new JButton("Add");
+    JButton addButton = new JButton("Dodaj");
 
     public AddPersonContent(BiFunction<String,String,Void> addBook) {
         super("Imię", "Nazwisko");

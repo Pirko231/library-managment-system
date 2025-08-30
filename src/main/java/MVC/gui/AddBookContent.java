@@ -24,7 +24,7 @@ public class AddBookContent extends Content {
     private static List<Person> people;
 
     private Person owner = null;
-    private JButton addButton = new JButton("Add");
+    private JButton addButton = new JButton("Dodaj");
     private JComboBox<ComboBoxOwner> ownerList = new JComboBox<>();
 
     public static void setPeople(List<Person> p) {

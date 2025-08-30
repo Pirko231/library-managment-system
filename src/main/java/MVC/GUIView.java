@@ -90,8 +90,8 @@ public class GUIView implements View {
         CategoryAddObject.setCurrentContent(content);
 
         categoryGroup = new CategoryGroup(
-            new Category("Books", c -> cl.show(categoryObjectPanel, "BOOKS")),
-            new Category("People", c -> cl.show(categoryObjectPanel, "PEOPLE"))
+            new Category("Ksiązki", c -> cl.show(categoryObjectPanel, "BOOKS")),
+            new Category("Osoby", c -> cl.show(categoryObjectPanel, "PEOPLE"))
         );
 
         books = new CategoryObjectGroup("BOOKS",
