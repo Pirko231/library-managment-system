@@ -3,6 +3,7 @@ package MVC;
 import java.io.File;
 import java.util.List;
 
+import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Person;
 
@@ -17,4 +18,6 @@ public abstract class Model extends Observable {
     public abstract List<Book> getBooks(); 
 
     public abstract List<Person> getPeople();
+
+    public abstract List<Author> getAuthors();
 }

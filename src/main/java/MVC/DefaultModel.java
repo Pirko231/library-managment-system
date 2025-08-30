@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import MVC.commandChain.AddAuthorMiddleware;
 import MVC.commandChain.AddBookMiddleware;
 import MVC.commandChain.AddOwnerMiddleware;
 import MVC.commandChain.AddPersonMiddleware;
@@ -18,6 +19,7 @@ import MVC.commandChain.QuitMiddleware;
 import MVC.commandChain.RemoveBookMiddleware;
 import MVC.commandChain.RemoveOwnerMiddleware;
 import MVC.commandChain.RemovePersonMiddleware;
+import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Bookshelf;
 import MVC.objects.Person;
@@ -44,6 +46,7 @@ public class DefaultModel extends Model {
                 new RemoveBookMiddleware(bookshelf),
                 new RemovePersonMiddleware(personManager),
                 new RemoveOwnerMiddleware(bookshelf),
+                new AddAuthorMiddleware(personManager),
                 new HelpMiddleware()
         );
     }
@@ -91,6 +94,11 @@ public class DefaultModel extends Model {
     @Override
     public List<Person> getPeople() {
         return personManager.getPeople();
+    }
+
+    @Override
+    public List<Author> getAuthors() {
+        return personManager.getAuthors();
     }
 
     @Override

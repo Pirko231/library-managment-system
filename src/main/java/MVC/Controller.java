@@ -46,6 +46,10 @@ public class Controller {
         runChain(("add person " + name + ":" + surname).split(" "));
     }
 
+    public void addAuthor(String name, String surname) {
+        runChain(("add author " + name + ":" + surname).split(" "));
+    }
+
     public void removePerson(String hash) {
         runChain(("remove person " + hash).split(" "));
     }

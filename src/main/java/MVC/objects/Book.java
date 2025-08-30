@@ -38,7 +38,7 @@ public class Book implements Categorizable, Serializable {
     @Override
     public boolean equals(Object o) {
         var compare = (Book)o;
-        return title.equals(compare.getTitle()) && author.equals(compare.getAuthor());
+        return title.equals(compare.getTitle()) && (author != null ? author.equals(compare.getAuthor()) : compare.author == null);
     }
 
     @Override

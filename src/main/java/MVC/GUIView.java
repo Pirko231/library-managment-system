@@ -44,6 +44,7 @@ public class GUIView implements View {
     private JPanel categoryObjectPanel;
     private CategoryGroup categoryGroup;
     private CategoryObjectGroup books;
+    private CategoryObjectGroup authors;
     private CategoryObjectGroup people;
 
     public GUIView(Controller controller, Model model) {
@@ -92,6 +93,7 @@ public class GUIView implements View {
 
         categoryGroup = new CategoryGroup(
             new Category("Ksiązki", c -> cl.show(categoryObjectPanel, "BOOKS")),
+            new Category("Autorzy", c -> cl.show(categoryObjectPanel, "AUTHORS")),
             new Category("Osoby", c -> cl.show(categoryObjectPanel, "PEOPLE"))
         );
 
@@ -99,11 +101,16 @@ public class GUIView implements View {
             new CategoryAddObject(new AddBookContent((s1,a, p) -> {controller.addBook(s1, a, p); return null;}))
         );
 
+        authors = new CategoryObjectGroup("AUTHORS",
+            new CategoryAddObject(new AddAuthorContent((s1,s2) -> {controller.addAuthor(s1, s2); return null;}))
+        );
+
         people = new CategoryObjectGroup("PEOPLE",
             new CategoryAddObject(new AddPersonContent((s1,s2) -> {controller.addPerson(s1, s2); return null;}))
         );
 
         categoryObjectPanel.add(books, books.getCode());
+        categoryObjectPanel.add(authors, authors.getCode());
         categoryObjectPanel.add(people, people.getCode());
 
         JSplitPane splitCategories = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(categoryGroup), categoryObjectPanel);
@@ -118,6 +125,7 @@ public class GUIView implements View {
 
     public void update(Model model) {
         books.setContent(CategoryObject.toCategoryObject(model.getBooks()));
+        authors.setContent(CategoryObject.toCategoryObject(model.getAuthors()));
         people.setContent(CategoryObject.toCategoryObject(model.getPeople()));
         books.fetchPeople(model.getPeople());
         frame.repaint();
