@@ -18,12 +18,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import MVC.objects.Author;
 import MVC.objects.Person;
 
 public class AddBookContent extends Content {
     private static List<Person> people;
 
     private Person owner = null;
+    private Author author = null;
     private JButton addButton = new JButton("Dodaj");
     private JComboBox<ComboBoxOwner> ownerList = new JComboBox<>();
 
@@ -31,15 +33,19 @@ public class AddBookContent extends Content {
         people = p;
     }
 
-    public AddBookContent(TriFunction<String,String,Person,Void> addBook) {
+    public AddBookContent(TriFunction<String,Author,Person,Void> addBook) {
         super("Książka", "Autor");
+
+        add(new JLabel("Książka"));
+        add(nameField);
+        add(new JLabel("Autor"));
 
         ownerList.setAlignmentX(LEFT_ALIGNMENT);
         ownerList.addActionListener(new SelectOwnerAction());
         fetchPeople();
         add(ownerList);
 
-        addButton.addActionListener(e -> {addBook.apply(nameField.getText(), authorField.getText(), owner); nameField.setText(""); authorField.setText("");ownerList.setSelectedIndex(0);});
+        addButton.addActionListener(e -> {addBook.apply(nameField.getText(), author, owner); nameField.setText(""); ownerList.setSelectedIndex(0);});
         add(addButton);
     }
 

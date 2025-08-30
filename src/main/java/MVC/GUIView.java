@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import MVC.objects.Author;
 
 import java.util.Optional;
 
@@ -85,7 +86,7 @@ public class GUIView implements View {
         fileChooser.addActionListener(new ChooseFile());
 
         ContentRef content = new ContentRef();
-        content.setContent(new AddBookContent((s1, s2, p) -> {controller.addBook(s1, s2, p); return null;}));
+        content.setContent(new AddBookContent((s1, a, p) -> {controller.addBook(s1, a, p); return null;}));
         CategoryObject.setCurrentContent(content);
         CategoryAddObject.setCurrentContent(content);
 
@@ -95,7 +96,7 @@ public class GUIView implements View {
         );
 
         books = new CategoryObjectGroup("BOOKS",
-            new CategoryAddObject(new AddBookContent((s1,s2, p) -> {controller.addBook(s1, s2, p); return null;}))
+            new CategoryAddObject(new AddBookContent((s1,a, p) -> {controller.addBook(s1, a, p); return null;}))
         );
 
         people = new CategoryObjectGroup("PEOPLE",

@@ -16,9 +16,17 @@ import javax.swing.JTextField;
 
 public class AddPersonContent extends Content {
     JButton addButton = new JButton("Dodaj");
+    private JTextField authorField = new JTextField(20);
 
     public AddPersonContent(BiFunction<String,String,Void> addBook) {
         super("Imię", "Nazwisko");
+
+        authorField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        add(new JLabel("Imię"));
+        add(nameField);
+        add(Box.createVerticalStrut(8));
+        add(new JLabel("Nazwisko"));
+        add(authorField);
 
         addButton.addActionListener(e -> {addBook.apply(nameField.getText(), authorField.getText()); nameField.setText(""); authorField.setText("");});
         add(addButton);

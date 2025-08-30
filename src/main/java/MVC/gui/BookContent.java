@@ -6,6 +6,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,25 +18,6 @@ import MVC.objects.Book;
 import MVC.objects.Person;
 import MVC.objects.PersonManager;
 
-class ComboBoxOwner {
-    public String name;
-    public Person person;
-
-    public ComboBoxOwner(String name, Person person) {
-        this.name = name;
-        this.person = person;
-    }
-
-    @Override
-    public String toString() {
-        if (person != null) {
-            return person.getName() + " " + person.getSurname();
-        }
-        else {
-            return name;
-        }
-    }
-}
 
 public class BookContent extends Content {
     private static List<Person> people;
@@ -44,6 +26,7 @@ public class BookContent extends Content {
     
 
     private JPanel buttons = new JPanel();
+    private JComboBox<ComboBoxAuthor> authorList = new JComboBox<>();
     private JComboBox<ComboBoxOwner> ownerList = new JComboBox<>();
 
     public static void setData(List<Person> p, Controller c) {
@@ -55,7 +38,16 @@ public class BookContent extends Content {
         super("Książka", "Autor");
         this.book = book;
         nameField.setText(book.getTitle());
-        authorField.setText(book.getAuthor().getName() + " " + book.getAuthor().getSurname());
+        //authorField.setText(book.getAuthor().getName() + " " + book.getAuthor().getSurname());
+
+        add(new JLabel("Książka"));
+        add(nameField);
+        add(new JLabel("Autor"));
+
+        authorList.setAlignmentX(LEFT_ALIGNMENT);
+        authorList.addActionListener(new SelectAuthorAction());
+        fetchAuthors();
+        add(authorList);
 
         JLabel ownerLabel = new JLabel("Właściciel");
         add(ownerLabel);
@@ -86,7 +78,7 @@ public class BookContent extends Content {
     }
 
     public void setAuthorName(String name) {
-        authorField.setText(name);
+        //authorField.setText(name);
     }
 
     private void fetchPeople() {
@@ -111,17 +103,32 @@ public class BookContent extends Content {
         }
     }
 
+    private void fetchAuthors() {
+        Author author = book.getAuthor();
+        authorList.addItem(new ComboBoxAuthor("Brak", null));
+        if (author != null) {
+            var current = new ComboBoxOwner(author.getName() + " " + author.getSurname(), author);
+            ownerList.addItem(current);
+            ownerList.setSelectedItem(current);
+        }
+        
+
+        for (var p : people) {
+            if (p != null) {
+                if (author != null && (p.getName() + " " + p.getSurname()).equals(author.getName() + " " + author.getSurname())) {
+
+                } else {
+                    ownerList.addItem(new ComboBoxOwner(p.getName() + " " + p.getSurname(), p));
+                }
+                
+            }
+        }
+    }
+
     private class ModifyAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             book.setTitle(nameField.getText());
-            String authorText = authorField.getText();
-            Author author = new Author(authorText, "");
-            if (authorText.contains(" ")) {
-                String authorName = authorText.substring(0, authorText.indexOf(" "));
-                String authorSurname = authorText.substring(authorText.indexOf(" ") + 1, authorText.length());
-                author = new Author(authorName, authorSurname);
-            }
-            book.setAuthor(author);
+            book.setAuthor(((ComboBoxAuthor)authorList.getSelectedItem()).author);
         }
     }
 
@@ -135,6 +142,14 @@ public class BookContent extends Content {
         public void actionPerformed(ActionEvent e) {
             ComboBoxOwner o = (ComboBoxOwner)ownerList.getSelectedItem();
             book.setOwner(o.person);
+        }
+    }
+
+    private class SelectAuthorAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            ComboBoxAuthor o = (ComboBoxAuthor)authorList.getSelectedItem();
+            book.setAuthor(o.author);
+            
         }
     }
 }

@@ -1,17 +1,21 @@
 package MVC.gui;
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import MVC.Controller;
 import MVC.objects.Book;
@@ -29,12 +33,20 @@ public class PersonContent extends Content {
 
     private JList<String> bookList = new JList<>();
     private JPanel buttons = new JPanel();
+    private JTextField authorField = new JTextField(20);
 
     public PersonContent(Person person) {
         super("Imię", "Nazwisko");
         this.person = person;
         nameField.setText(person.getName());
         authorField.setText(person.getSurname());
+
+        authorField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        add(new JLabel("Imię"));
+        add(nameField);
+        add(Box.createVerticalStrut(8));
+        add(new JLabel("Nazwisko"));
+        add(authorField);
 
         bookList.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         fetchBooks();
