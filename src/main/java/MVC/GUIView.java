@@ -51,6 +51,7 @@ public class GUIView implements View {
         model.addObserver((Observer)this);
 
         BookContent.setData(model.getPeople(), controller);
+        AddBookContent.setPeople(model.getPeople());
         PersonContent.setBooks(model.getBooks());
 
         //frame = ;
@@ -82,7 +83,7 @@ public class GUIView implements View {
         fileChooser.addActionListener(new ChooseFile());
 
         ContentRef content = new ContentRef();
-        content.setContent(new AddBookContent((s1, s2) -> {controller.addBook(s1, s2); return null;}));
+        content.setContent(new AddBookContent((s1, s2, p) -> {controller.addBook(s1, s2, p); return null;}));
         CategoryObject.setCurrentContent(content);
         CategoryAddObject.setCurrentContent(content);
 
@@ -92,7 +93,7 @@ public class GUIView implements View {
         );
 
         books = new CategoryObjectGroup("BOOKS",
-            new CategoryAddObject(new AddBookContent((s1,s2) -> {controller.addBook(s1, s2); return null;}))
+            new CategoryAddObject(new AddBookContent((s1,s2, p) -> {controller.addBook(s1, s2, p); return null;}))
         );
 
         people = new CategoryObjectGroup("PEOPLE",

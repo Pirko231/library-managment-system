@@ -3,6 +3,8 @@ package MVC;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import MVC.objects.Person;
+
 public class Controller {
 
     private View view;
@@ -24,6 +26,15 @@ public class Controller {
 
     public void addBook(String title, String author) {
         runChain(("add book " + title + " : " + author).split(" "));
+    }
+
+    // dodaje ksiazke razem z wlascicielem
+    public void addBook(String title, String author, Person owner) {
+        runChain(("add book " + title + " : " + author).split(" "));
+        if (owner != null) {
+            runChain(("add owner " + title + " : " + owner.getHash()).split(" "));
+        }
+        
     }
 
     public void removeBook(String title, String author) {

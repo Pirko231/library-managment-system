@@ -21,9 +21,16 @@ public class CategoryAddObject extends JButton {
         addActionListener(new ChangeCurrentContent());
     }
 
+    public void fetchData() {
+        if (content instanceof AddBookContent) {
+            ((AddBookContent)content).fetchPeople();
+        }
+    }
+
     private class ChangeCurrentContent implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             currentContent.setContent(content);
+            fetchData();
         }
     }
 }

@@ -31,6 +31,7 @@ public class CategoryObjectGroup extends JPanel {
 
     public void setContent(List<? extends CategoryObject> content) {
         removeAll();
+        addButton.fetchData();
         add(addButton);
         for (var o : content) {
             add(o);
