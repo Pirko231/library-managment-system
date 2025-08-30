@@ -52,7 +52,7 @@ public class GUIView implements View {
 
         BookContent.setData(model.getPeople(), controller);
         AddBookContent.setPeople(model.getPeople());
-        PersonContent.setBooks(model.getBooks());
+        PersonContent.setData(model.getBooks(), controller);
 
         //frame = ;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

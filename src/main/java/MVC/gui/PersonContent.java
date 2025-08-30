@@ -10,21 +10,25 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import MVC.Controller;
 import MVC.objects.Book;
 import MVC.objects.Person;
 
 public class PersonContent extends Content {
     private Person person;
+    private static Controller controller;
     private static List<Book> books;
 
-    public static void setBooks(List<Book> b) {
+    public static void setData(List<Book> b, Controller c) {
         books = b;
+        controller = c;
     }
 
     private JList<String> bookList = new JList<>();
-    private JButton modifyButton = new JButton("modyfikuj");
+    private JPanel buttons = new JPanel();
 
     public PersonContent(Person person) {
         super("Imię", "Nazwisko");
@@ -35,8 +39,14 @@ public class PersonContent extends Content {
         bookList.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         fetchBooks();
 
+        buttons.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        JButton modifyButton = new JButton("Modyfikuj");
         modifyButton.addActionListener(new ModifyAction());
-        add(modifyButton);
+        JButton deleteButton = new JButton("Usuń");
+        deleteButton.addActionListener(new DeleteAction());
+        buttons.add(modifyButton);
+        buttons.add(deleteButton);
+        add(buttons);
         add(new JScrollPane(bookList));
     }
 
@@ -62,6 +72,12 @@ public class PersonContent extends Content {
         public void actionPerformed(ActionEvent e) {
             person.setName(nameField.getText());
             person.setSurname(authorField.getText());
+        }
+    }
+
+    private class DeleteAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            controller.removePerson(person.getHash());
         }
     }
 }

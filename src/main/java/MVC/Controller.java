@@ -45,6 +45,10 @@ public class Controller {
         runChain(("add person " + name + ":" + surname).split(" "));
     }
 
+    public void removePerson(String hash) {
+        runChain(("remove person " + hash).split(" "));
+    }
+
     public void runChain(String[] args) {
         model.sendCommand(args);
     }
