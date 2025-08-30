@@ -59,6 +59,8 @@ public class GUIView implements View {
         frame.addWindowListener(new CloseEventListener());
         frame.setVisible(true);
 
+        CommandLine commandLine = new CommandLine(s -> {controller.runChain(s.split(" ")); return null;});
+
         CardLayout cl = new CardLayout();
         categoryObjectPanel = new JPanel(cl);
 
@@ -109,6 +111,7 @@ public class GUIView implements View {
         
         update(model);
         frame.getContentPane().add(BorderLayout.CENTER, splitPane); // west
+        frame.getContentPane().add(BorderLayout.SOUTH, commandLine);
         frame.setSize(600,600);
     }
 
