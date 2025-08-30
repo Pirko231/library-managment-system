@@ -3,6 +3,7 @@ package MVC;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import MVC.objects.Author;
 import MVC.objects.Person;
 
 public class Controller {
@@ -37,7 +38,7 @@ public class Controller {
         
     }
 
-    public void removeBook(String title, String author) {
+    public void removeBook(String title, Author author) {
         runChain(("remove book " + title + " : " + author).split(" "));
     }
 

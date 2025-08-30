@@ -1,5 +1,6 @@
 package MVC.commandChain;
 
+import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Bookshelf;
 
@@ -31,8 +32,14 @@ public class RemoveBookMiddleware extends Middleware {
             author += args[i] + " ";
         }
         author = author.substring(0, author.length() - 1);
+        Author authorClass = new Author(author, "");
+        if (author.contains(",")) {
+            String authorName = author.substring(1, author.indexOf(","));
+            String authorSurname = author.substring(author.indexOf(",") + 1, author.length() - 1);
+            authorClass = new Author(authorName, authorSurname);
+        }
 
-        Book book = bookshelf.findBook(new Book(title, author));
+        Book book = bookshelf.findBook(new Book(title, authorClass));
         boolean succes = bookshelf.removeBook(book);
         if (succes) {
             if (book.getOwner() != null) {

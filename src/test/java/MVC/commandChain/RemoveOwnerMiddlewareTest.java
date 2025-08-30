@@ -28,7 +28,7 @@ public class RemoveOwnerMiddlewareTest {
 
         // wielowyrazowe
         b.setTitle("Pan Tadeusz");
-        b.setAuthor("Adam Mickiewicz");
+        b.setAuthor(new Author("Adam","Mickiewicz"));
         b.setOwner(p);
         oMiddleware.check(("remove owner " + b.getTitle() + " : " + p.getHash()).split(" "));
         assertEquals(null, b.getOwner());

@@ -9,6 +9,7 @@ import java.util.List;
 public class PersonManager implements Serializable {
 
     private ArrayList<Person> people = new ArrayList<>();
+    private ArrayList<Author> authors = new ArrayList<>();
     private int code = 0;
 
     public PersonManager() {
@@ -27,6 +28,12 @@ public class PersonManager implements Serializable {
         code++;
         person.setCode(code);
         people.add(person);
+    }
+
+    public void addAuthor(Author author) {
+        code++;
+        author.setCode(code);
+        authors.add(author);
     }
 
     public void display() {
@@ -49,11 +56,28 @@ public class PersonManager implements Serializable {
         return people.remove(person);
     }
 
-    public int getSize() {
+    public int getPeopleSize() {
         return people.size();
     }
 
     public List<Person> getPeople() {
         return people;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public int getAuthorSize() {
+        return authors.size();
+    }
+
+    public Author findAuthor(String hasCode) {
+        for (Author author : authors) {
+            if (author.getHash().equals(hasCode)) {
+                return author;
+            }
+        }
+        return null;
     }
 }

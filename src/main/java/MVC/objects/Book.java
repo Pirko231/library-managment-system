@@ -11,14 +11,14 @@ import MVC.gui.Content;
 public class Book implements Categorizable, Serializable {
 
     private String title;
-    private String author;
+    private Author author;
     Person owner = null;
 
     public Book() {
-        this("empty", "empty");
+        this("empty", new Author("empty", "empty"));
     }
 
-    public Book(String title, String author) {
+    public Book(String title, Author author) {
         this.title = title;
         this.author = author;
     }
@@ -68,7 +68,7 @@ public class Book implements Categorizable, Serializable {
         return title;
     }
 
-    public final String getAuthor() {
+    public final Author getAuthor() {
         return author;
     }
 
@@ -76,7 +76,7 @@ public class Book implements Categorizable, Serializable {
         this.title = title;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 }

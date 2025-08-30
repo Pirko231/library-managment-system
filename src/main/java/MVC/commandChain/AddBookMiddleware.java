@@ -1,5 +1,6 @@
 package MVC.commandChain;
 
+import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Bookshelf;
 
@@ -35,6 +36,14 @@ public class AddBookMiddleware extends Middleware {
             author += args[i] + " ";
         }
         author = author.substring(0, author.length() - 1);
-        return new Book(title, author);
+
+        Author authorClass = new Author(author, "");
+        if (author.contains(" ")) {
+            String authorName = author.substring(0, author.indexOf(" "));
+            String authorSurname = author.substring(author.indexOf(" ") + 1, author.length());
+            authorClass = new Author(authorName, authorSurname);
+        }
+
+        return new Book(title, authorClass);
     }
 }

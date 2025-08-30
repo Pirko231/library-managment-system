@@ -22,10 +22,10 @@ public class AddBookMiddlewareTest {
 
         // ksiazka z pojedynczym imieniem
         bMiddleware.check("add book book : author".split(" "));
-        assertEquals(bookshelf.findBook("book"), new Book("book", "author"));
+        assertEquals(bookshelf.findBook("book"), new Book("book", new Author("author", "")));
     
         // ksiazka z imieniem i autorem skladajacym sie z kilku wyrazow
         bMiddleware.check("add book Pan Tadeusz : Adam Mickiewicz".split(" "));
-        assertEquals(bookshelf.findBook("Pan Tadeusz"), new Book("Pan Tadeusz", "Adam Mickiewicz"));
+        assertEquals(bookshelf.findBook("Pan Tadeusz"), new Book("Pan Tadeusz", new Author("Adam","Mickiewicz")));
     }
 }

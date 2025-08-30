@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import MVC.Controller;
+import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Person;
 import MVC.objects.PersonManager;
@@ -54,7 +55,7 @@ public class BookContent extends Content {
         super("Książka", "Autor");
         this.book = book;
         nameField.setText(book.getTitle());
-        authorField.setText(book.getAuthor());
+        authorField.setText(book.getAuthor().getName() + " " + book.getAuthor().getSurname());
 
         JLabel ownerLabel = new JLabel("Właściciel");
         add(ownerLabel);
@@ -113,7 +114,14 @@ public class BookContent extends Content {
     private class ModifyAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             book.setTitle(nameField.getText());
-            book.setAuthor(authorField.getText());
+            String authorText = authorField.getText();
+            Author author = new Author(authorText, "");
+            if (authorText.contains(" ")) {
+                String authorName = authorText.substring(0, authorText.indexOf(" "));
+                String authorSurname = authorText.substring(authorText.indexOf(" ") + 1, authorText.length());
+                author = new Author(authorName, authorSurname);
+            }
+            book.setAuthor(author);
         }
     }
 

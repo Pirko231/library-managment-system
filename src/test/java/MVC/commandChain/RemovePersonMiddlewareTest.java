@@ -20,7 +20,7 @@ public class RemovePersonMiddlewareTest {
         Person p = new Person("name", "surname");
         pManager.addPerson(p);
         pMiddleware.check(("remove person " + p.getHash()).split(" "));
-        assertEquals(0, pManager.getSize());
+        assertEquals(0, pManager.getPeopleSize());
 
         // test usuwania razem z ownerem
         Book b = new Book();
@@ -28,7 +28,7 @@ public class RemovePersonMiddlewareTest {
         b.setOwner(p);
         pManager.addPerson(p);
         pMiddleware.check(("remove person " + p.getHash()).split(" "));
-        assertEquals(0, pManager.getSize());
+        assertEquals(0, pManager.getPeopleSize());
         assertEquals(null, b.getOwner());
         assertEquals(0, p.getBooks().size());
     }

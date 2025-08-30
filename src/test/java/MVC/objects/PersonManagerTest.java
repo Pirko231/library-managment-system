@@ -9,7 +9,7 @@ public class PersonManagerTest {
     public void testAddPerson() {
         PersonManager pManager = new PersonManager();
         pManager.addPerson(new Person("",""));
-        assertEquals(1, pManager.getSize());
+        assertEquals(1, pManager.getPeopleSize());
     }
 
     @Test

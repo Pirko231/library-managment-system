@@ -2,6 +2,7 @@ package MVC.commandChain;
 
 import org.junit.jupiter.api.Test;
 
+import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Bookshelf;
 import MVC.objects.Person;
@@ -22,7 +23,7 @@ public class AddOwnerMiddlewareTest {
         // dodawanie nowego wlasciciela
         Person person1 = new Person("Name","surname");
         pManager.addPerson(person1);
-        Book book1 = new Book("Title", "Author");
+        Book book1 = new Book("Title", new Author("Author", ""));
         bookshelf.addBook(book1);
         oMiddleware.check(("add owner " + book1.getTitle() + " : " + person1.getHash()).split(" "));
         assertEquals(book1.getOwner(), person1);
