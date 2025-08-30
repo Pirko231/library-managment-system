@@ -21,6 +21,7 @@ import MVC.objects.PersonManager;
 
 public class BookContent extends Content {
     private static List<Person> people;
+    private static List<Author> authors;
     private static Controller controller;
     private Book book;
     
@@ -29,8 +30,9 @@ public class BookContent extends Content {
     private JComboBox<ComboBoxAuthor> authorList = new JComboBox<>();
     private JComboBox<ComboBoxOwner> ownerList = new JComboBox<>();
 
-    public static void setData(List<Person> p, Controller c) {
+    public static void setData(List<Person> p, List<Author> a, Controller c) {
         people = p;
+        authors = a;
         controller = c;
     }
 
@@ -107,18 +109,18 @@ public class BookContent extends Content {
         Author author = book.getAuthor();
         authorList.addItem(new ComboBoxAuthor("Brak", null));
         if (author != null) {
-            var current = new ComboBoxOwner(author.getName() + " " + author.getSurname(), author);
-            ownerList.addItem(current);
-            ownerList.setSelectedItem(current);
+            var current = new ComboBoxAuthor(author.getName() + " " + author.getSurname(), author);
+            authorList.addItem(current);
+            authorList.setSelectedItem(current);
         }
         
 
-        for (var p : people) {
-            if (p != null) {
-                if (author != null && (p.getName() + " " + p.getSurname()).equals(author.getName() + " " + author.getSurname())) {
+        for (var a : authors) {
+            if (a != null) {
+                if (author != null && (a.getName() + " " + a.getSurname()).equals(author.getName() + " " + author.getSurname())) {
 
                 } else {
-                    ownerList.addItem(new ComboBoxOwner(p.getName() + " " + p.getSurname(), p));
+                    authorList.addItem(new ComboBoxAuthor(a.getName() + " " + a.getSurname(), a));
                 }
                 
             }

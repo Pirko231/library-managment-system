@@ -23,14 +23,17 @@ import MVC.objects.Person;
 
 public class AddBookContent extends Content {
     private static List<Person> people;
+    private static List<Author> authors;
 
     private Person owner = null;
     private Author author = null;
     private JButton addButton = new JButton("Dodaj");
     private JComboBox<ComboBoxOwner> ownerList = new JComboBox<>();
+    private JComboBox<ComboBoxAuthor> authorList = new JComboBox<>();
 
-    public static void setPeople(List<Person> p) {
+    public static void setPeople(List<Person> p, List<Author> a) {
         people = p;
+        authors = a;
     }
 
     public AddBookContent(TriFunction<String,Author,Person,Void> addBook) {
@@ -40,6 +43,12 @@ public class AddBookContent extends Content {
         add(nameField);
         add(new JLabel("Autor"));
 
+        authorList.setAlignmentX(LEFT_ALIGNMENT);
+        authorList.addActionListener(new SelectAuthorAction());
+        fetchAuthors();
+        add(authorList);
+
+        add(new JLabel("Właściciel"));
         ownerList.setAlignmentX(LEFT_ALIGNMENT);
         ownerList.addActionListener(new SelectOwnerAction());
         fetchPeople();
@@ -67,6 +76,27 @@ public class AddBookContent extends Content {
         repaint();
     }
 
+    public void fetchAuthors() {
+        authorList.addItem(new ComboBoxAuthor("Brak", null));
+        if (author != null) {
+            var current = new ComboBoxAuthor(author.getName() + " " + author.getSurname(), author);
+            authorList.addItem(current);
+            authorList.setSelectedItem(current);
+        }
+        
+
+        for (var a : authors) {
+            if (a != null) {
+                if (author != null && (a.getName() + " " + a.getSurname()).equals(author.getName() + " " + author.getSurname())) {
+
+                } else {
+                    authorList.addItem(new ComboBoxAuthor(a.getName() + " " + a.getSurname(), a));
+                }
+                
+            }
+        }
+    }
+
     private class SelectOwnerAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ComboBoxOwner o = (ComboBoxOwner)ownerList.getSelectedItem();
@@ -76,6 +106,13 @@ public class AddBookContent extends Content {
                 owner = null;
             }
             
+        }
+    }
+
+    private class SelectAuthorAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            ComboBoxAuthor o = (ComboBoxAuthor)authorList.getSelectedItem();
+            author = o.author;
         }
     }
 }

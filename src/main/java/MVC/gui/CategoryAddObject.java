@@ -24,6 +24,7 @@ public class CategoryAddObject extends JButton {
     public void fetchData() {
         if (content instanceof AddBookContent) {
             ((AddBookContent)content).fetchPeople();
+        } else if (content instanceof AddAuthorContent) {
         }
     }
 

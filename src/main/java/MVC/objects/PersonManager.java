@@ -22,6 +22,10 @@ public class PersonManager implements Serializable {
         for (Person person : pManager.getPeople()) {
             people.add(person);
         }
+        authors.clear();
+        for (Author author : pManager.getAuthors()) {
+            authors.add(author);
+        }
     }
 
     public void addPerson(Person person) {
