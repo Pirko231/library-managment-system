@@ -12,11 +12,27 @@ public class PersonManagerTest {
         assertEquals(1, pManager.getPeopleSize());
     }
 
-    @Test
+    @Test 
     public void testFindPerson() {
         PersonManager pManager = new PersonManager();
         Person p = new Person("", "");
         pManager.addPerson(p);
         assertEquals(p, pManager.findPerson(p.getHash()));
+    }
+
+    @Test
+    public void testAddAuthor() {
+        PersonManager pManager = new PersonManager();
+        Author a = new Author("", "");
+        pManager.addAuthor(a);
+        assertEquals(1, pManager.getAuthorSize());
+    }
+
+    @Test 
+    public void testFindAuthor() {
+        PersonManager pManager = new PersonManager();
+        Author a = new Author("", "");
+        pManager.addAuthor(a);
+        assertEquals(a, pManager.findAuthor(a.getHash()));
     }
 }
