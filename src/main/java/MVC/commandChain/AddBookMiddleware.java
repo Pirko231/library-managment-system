@@ -14,7 +14,7 @@ public class AddBookMiddleware extends Middleware {
 
     @Override
     public boolean check(String[] args) {
-        if (args.length > 4 && args[0].equals("add") && (args[1].equals("book") || args[1].equals("Book"))) // dwa elementy
+        if (args.length > 2 && args[0].equals("add") && (args[1].equals("book") || args[1].equals("Book"))) // dwa elementy
         {
             Book book = handleInput(args);
             bookshelf.addBook(book);
@@ -26,24 +26,11 @@ public class AddBookMiddleware extends Middleware {
     private Book handleInput(String[] args) {
         String title = new String();
         int i = 2;
-        for(; i < args.length && !args[i].equals(":"); i++) {
+        for(; i < args.length; i++) {
             title += args[i] + " ";
         }
         title = title.substring(0, title.length() - 1);
-        i++; // pomijamy znak :
-        String author = new String();
-        for(; i < args.length; i++) {
-            author += args[i] + " ";
-        }
-        author = author.substring(0, author.length() - 1);
 
-        Author authorClass = new Author(author, "");
-        if (author.contains(" ")) {
-            String authorName = author.substring(0, author.indexOf(" "));
-            String authorSurname = author.substring(author.indexOf(" ") + 1, author.length());
-            authorClass = new Author(authorName, authorSurname);
-        }
-
-        return new Book(title, authorClass);
+        return new Book(title, null);
     }
 }
