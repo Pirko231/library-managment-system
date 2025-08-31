@@ -60,6 +60,10 @@ public class PersonManager implements Serializable {
         return people.remove(person);
     }
 
+    public boolean removeAuthor(Author author) {
+        return authors.remove(author);
+    }
+
     public int getPeopleSize() {
         return people.size();
     }

@@ -16,6 +16,7 @@ import MVC.commandChain.DisplayMiddleware;
 import MVC.commandChain.HelpMiddleware;
 import MVC.commandChain.Middleware;
 import MVC.commandChain.QuitMiddleware;
+import MVC.commandChain.RemoveAuthorMiddleware;
 import MVC.commandChain.RemoveBookMiddleware;
 import MVC.commandChain.RemoveOwnerMiddleware;
 import MVC.commandChain.RemovePersonMiddleware;
@@ -47,6 +48,7 @@ public class DefaultModel extends Model {
                 new RemovePersonMiddleware(personManager),
                 new RemoveOwnerMiddleware(bookshelf),
                 new AddAuthorMiddleware(personManager),
+                new RemoveAuthorMiddleware(personManager),
                 new HelpMiddleware()
         );
     }

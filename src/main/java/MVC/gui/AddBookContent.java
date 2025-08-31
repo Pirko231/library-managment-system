@@ -77,24 +77,17 @@ public class AddBookContent extends Content {
     }
 
     public void fetchAuthors() {
+        authorList.removeAllItems();
         authorList.addItem(new ComboBoxAuthor("Brak", null));
-        if (author != null) {
-            var current = new ComboBoxAuthor(author.getName() + " " + author.getSurname(), author);
-            authorList.addItem(current);
-            authorList.setSelectedItem(current);
-        }
         
 
         for (var a : authors) {
             if (a != null) {
-                if (author != null && (a.getName() + " " + a.getSurname()).equals(author.getName() + " " + author.getSurname())) {
-
-                } else {
-                    authorList.addItem(new ComboBoxAuthor(a.getName() + " " + a.getSurname(), a));
-                }
-                
+                authorList.addItem(new ComboBoxAuthor(a.getName() + " " + a.getSurname(), a));
             }
         }
+        revalidate();
+        repaint();
     }
 
     private class SelectOwnerAction implements ActionListener {

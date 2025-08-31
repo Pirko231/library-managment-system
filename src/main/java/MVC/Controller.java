@@ -31,7 +31,7 @@ public class Controller {
 
     // dodaje ksiazke razem z wlascicielem
     public void addBook(String title, Author author, Person owner) {
-        runChain(("add book " + title + " : " + author).split(" "));
+        runChain(("add book " + title + " : " + author.getName() + " " + author.getSurname()).split(" "));
         if (owner != null) {
             runChain(("add owner " + title + " : " + owner.getHash()).split(" "));
         }
@@ -52,6 +52,10 @@ public class Controller {
 
     public void removePerson(String hash) {
         runChain(("remove person " + hash).split(" "));
+    }
+
+    public void removeAuthor(String hash) {
+        runChain(("remove author " + hash).split(" "));
     }
 
     public void runChain(String[] args) {

@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.swing.Box;
 import javax.swing.DefaultListModel;
@@ -22,8 +21,8 @@ import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Person;
 
-public class PersonContent extends Content {
-    private Person person;
+public class AuthorContent extends Content {
+    private Author author;
     private static Controller controller;
     private static List<Book> books;
 
@@ -36,11 +35,11 @@ public class PersonContent extends Content {
     private JPanel buttons = new JPanel();
     private JTextField authorField = new JTextField(20);
 
-    public PersonContent(Person person) {
+    public AuthorContent(Author author) {
         super("Imię", "Nazwisko");
-        this.person = person;
-        nameField.setText(person.getName());
-        authorField.setText(person.getSurname());
+        this.author = author;
+        nameField.setText(author.getName());
+        authorField.setText(author.getSurname());
 
         authorField.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(new JLabel("Imię"));
@@ -71,7 +70,7 @@ public class PersonContent extends Content {
     private void fetchBooks() {
         DefaultListModel<String> model = new DefaultListModel<>();
         for(var val : books) {
-            if (val.getOwner() == person) {
+            if (val.getOwner() == author) {
                 model.addElement("Tytuł: " + val.getTitle() + "  Autor: " + val.getAuthor());
             }
             
@@ -83,14 +82,14 @@ public class PersonContent extends Content {
 
     private class ModifyAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            person.setName(nameField.getText());
-            person.setSurname(authorField.getText());
+            author.setName(nameField.getText());
+            author.setSurname(authorField.getText());
         }
     }
 
     private class DeleteAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            controller.removePerson(person.getHash());
+            controller.removeAuthor(author.getHash());
         }
     }
 }
