@@ -24,7 +24,8 @@ public class HelpMiddleware extends Middleware {
         System.out.println("Remove book: remove book title : {authorName,authorSurname}");
         System.out.println("Remove author: remove author authorHash");
         System.out.println("Remove person: remove person personHash");
-        System.out.println("Add book owner: add owner title : personHash");
+        System.out.println("Set book author: set author bookTitle : authorHash");
+        System.out.println("Set book owner: add owner title : personHash");
         System.out.println("Remove book owner: remove owner title : personHash");
         System.out.println("Get books (book name + owner): books");
         System.out.println("Get people (personHash): people");

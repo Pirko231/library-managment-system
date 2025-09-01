@@ -25,8 +25,8 @@ public class Controller {
         view = new GUIView(this, model);
     }
 
-    public void addBook(String title, String author) {
-        runChain(("add book " + title + " : " + author).split(" "));
+    public void addBook(String title) {
+        runChain(("add book " + title).split(" "));
     }
 
     // dodaje ksiazke razem z wlascicielem
@@ -40,16 +40,16 @@ public class Controller {
         }
     }
 
-    public void removeBook(String title, Author author) {
-        runChain(("remove book " + title + " : " + author).split(" "));
-    }
-
     public void addPerson(String name, String surname) {
         runChain(("add person " + name + ":" + surname).split(" "));
     }
 
     public void addAuthor(String name, String surname) {
         runChain(("add author " + name + ":" + surname).split(" "));
+    }
+
+    public void removeBook(String title, Author author) {
+        runChain(("remove book " + title + " : " + author).split(" "));
     }
 
     public void removePerson(String hash) {
