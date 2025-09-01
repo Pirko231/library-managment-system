@@ -72,7 +72,9 @@ public class PersonContent extends Content {
         DefaultListModel<String> model = new DefaultListModel<>();
         for(var val : books) {
             if (val.getOwner() == person) {
-                model.addElement("Tytuł: " + val.getTitle() + "  Autor: " + val.getAuthor());
+                String content = "Tytuł: " + val.getTitle() + " | ";
+                content += "Autor: " + (val.getAuthor() == null ? "brak" : val.getAuthor().getName() + " " + val.getAuthor().getSurname());
+                model.addElement(content);
             }
             
         }

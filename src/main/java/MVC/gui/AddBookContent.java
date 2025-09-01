@@ -105,7 +105,12 @@ public class AddBookContent extends Content {
     private class SelectAuthorAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ComboBoxAuthor o = (ComboBoxAuthor)authorList.getSelectedItem();
-            author = o.author;
+            if (o != null) {
+                author = o.author;
+            } else {
+                owner = null;
+            }
+            
         }
     }
 }

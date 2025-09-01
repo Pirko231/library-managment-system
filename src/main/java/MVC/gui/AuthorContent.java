@@ -70,8 +70,10 @@ public class AuthorContent extends Content {
     private void fetchBooks() {
         DefaultListModel<String> model = new DefaultListModel<>();
         for(var val : books) {
-            if (val.getOwner() == author) {
-                model.addElement("Tytuł: " + val.getTitle() + "  Autor: " + val.getAuthor());
+            if (val.getAuthor() == author) {
+                String content = "Tytuł: " + val.getTitle() + " | ";
+                content += "Właściciel: " + (val.getOwner() == null ? "brak" : val.getOwner().getName() + " " + val.getOwner().getSurname());
+                model.addElement(content);
             }
             
         }
