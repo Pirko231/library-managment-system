@@ -18,7 +18,7 @@ public class HelpMiddleware extends Middleware {
     private void text() {
         System.out.println("Commands: ");
         System.out.println("Get help: help | Help | h");
-        System.out.println("Add book: add book title");
+        System.out.println("Add book: add book title : authorName authorSurname");
         System.out.println("Add author: add author name:surname");
         System.out.println("Add person: add person name:surname");
         System.out.println("Remove book: remove book title : {authorName,authorSurname}");

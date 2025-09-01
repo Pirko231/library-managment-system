@@ -12,19 +12,20 @@ public class AddBookMiddlewareTest {
         Bookshelf bookshelf = new Bookshelf(pManager);
         AddBookMiddleware bMiddleware = new AddBookMiddleware(bookshelf);
 
+        // invalid syntax
         bMiddleware.check("add book bk:auth".split(" "));
-        assertEquals(1, bookshelf.getSize());
+        assertEquals(bookshelf.getSize(), 0);
         bMiddleware.check("add book bk :auth".split(" "));
-        assertEquals(2, bookshelf.getSize());
+        assertEquals(bookshelf.getSize(), 0);
         bMiddleware.check("add book bk: auth".split(" "));
-        assertEquals(3, bookshelf.getSize());
+        assertEquals(bookshelf.getSize(), 0);
 
         // ksiazka z pojedynczym imieniem
-        bMiddleware.check("add book name of the book".split(" "));
-        assertEquals(bookshelf.findBook("name of the book"), new Book("name of the book", null));
+        bMiddleware.check("add book book : author".split(" "));
+        assertEquals(bookshelf.findBook("book"), new Book("book", new Author("author", "")));
     
         // ksiazka z imieniem i autorem skladajacym sie z kilku wyrazow
-        bMiddleware.check("add book Pan Tadeusz".split(" "));
-        assertEquals(bookshelf.findBook("Pan Tadeusz"), new Book("Pan Tadeusz", null));
+        bMiddleware.check("add book Pan Tadeusz : Adam Mickiewicz".split(" "));
+        assertEquals(bookshelf.findBook("Pan Tadeusz"), new Book("Pan Tadeusz", new Author("Adam","Mickiewicz")));
     }
 }
