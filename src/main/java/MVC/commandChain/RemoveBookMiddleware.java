@@ -32,7 +32,7 @@ public class RemoveBookMiddleware extends Middleware {
             author += args[i] + " ";
         }
         author = author.substring(0, author.length() - 1);
-        Author authorClass = new Author(author, "");
+        Author authorClass = null;
         if (author.contains(",")) {
             String authorName = author.substring(1, author.indexOf(","));
             String authorSurname = author.substring(author.indexOf(",") + 1, author.length() - 1);
