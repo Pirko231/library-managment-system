@@ -16,7 +16,7 @@ public class ControllerTest {
     @Test
     public void testAddBook() {
         AtomicBoolean running = new AtomicBoolean(true);
-        Model model = new DefaultModel(running);
+        Model model = new DefaultModel(running, "");
         Controller controller = new Controller(model,running);
 
         // wariant funkcji pierwszy (String)
@@ -41,7 +41,7 @@ public class ControllerTest {
     @Test
     public void testRemoveBook() {
         AtomicBoolean running = new AtomicBoolean(true);
-        Model model = new DefaultModel(running);
+        Model model = new DefaultModel(running, "");
         Controller controller = new Controller(model,running);
 
         Book b1 = new Book("Tytuł", null);
@@ -69,7 +69,7 @@ public class ControllerTest {
     @Test
     public void testAddAuthor() {
         AtomicBoolean running = new AtomicBoolean(true);
-        Model model = new DefaultModel(running);
+        Model model = new DefaultModel(running, "");
         Controller controller = new Controller(model,running);
 
         controller.addAuthor("name","surname");
@@ -88,7 +88,7 @@ public class ControllerTest {
     @Test
     public void testRemoveAuthor() {
         AtomicBoolean running = new AtomicBoolean(true);
-        Model model = new DefaultModel(running);
+        Model model = new DefaultModel(running, "");
         Controller controller = new Controller(model,running);
 
         PersonManager pManager = new PersonManager();
@@ -104,7 +104,7 @@ public class ControllerTest {
     @Test
     public void testAddPerson() {
         AtomicBoolean running = new AtomicBoolean(true);
-        Model model = new DefaultModel(running);
+        Model model = new DefaultModel(running, "");
         Controller controller = new Controller(model,running);
 
         controller.addPerson("name", "surname");
@@ -123,7 +123,7 @@ public class ControllerTest {
     @Test
     public void testRemovePerson() {
         AtomicBoolean running = new AtomicBoolean(true);
-        Model model = new DefaultModel(running);
+        Model model = new DefaultModel(running, "");
         Controller controller = new Controller(model,running);
 
         PersonManager pManager = new PersonManager();

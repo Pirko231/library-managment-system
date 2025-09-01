@@ -34,10 +34,10 @@ public class DefaultModel extends Model {
     private final Middleware middleware;
     
 
-    public DefaultModel(AtomicBoolean running) {
+    public DefaultModel(AtomicBoolean running, String filename) {
         personManager = new PersonManager();
         bookshelf = new Bookshelf(personManager);
-        readFile(new File("data.ser"));
+        readFile(new File(filename));
         
         middleware = Middleware.link(
                 new AddBookMiddleware(bookshelf),

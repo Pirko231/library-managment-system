@@ -10,7 +10,7 @@ public class Program {
 
     public static void main(String[] args) {
         AtomicBoolean running = new AtomicBoolean(true);
-        Model model = new DefaultModel(running);
+        Model model = new DefaultModel(running, "data.ser");
     
         if (args.length > 0) {
             new Controller(model, running).runChain(args);
