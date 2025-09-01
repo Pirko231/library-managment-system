@@ -31,11 +31,13 @@ public class Controller {
 
     // dodaje ksiazke razem z wlascicielem
     public void addBook(String title, Author author, Person owner) {
-        runChain(("add book " + title + " : " + author.getName() + " " + author.getSurname()).split(" "));
+        runChain(("add book " + title).split(" "));
         if (owner != null) {
             runChain(("add owner " + title + " : " + owner.getHash()).split(" "));
         }
-        
+        if (author != null) {
+            runChain(("set author " + title + " : " + author.getHash()).split(" "));
+        }
     }
 
     public void removeBook(String title, Author author) {

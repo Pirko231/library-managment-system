@@ -20,6 +20,7 @@ import MVC.commandChain.RemoveAuthorMiddleware;
 import MVC.commandChain.RemoveBookMiddleware;
 import MVC.commandChain.RemoveOwnerMiddleware;
 import MVC.commandChain.RemovePersonMiddleware;
+import MVC.commandChain.SetAuthorMiddleware;
 import MVC.objects.Author;
 import MVC.objects.Book;
 import MVC.objects.Bookshelf;
@@ -49,6 +50,7 @@ public class DefaultModel extends Model {
                 new RemoveOwnerMiddleware(bookshelf),
                 new AddAuthorMiddleware(personManager),
                 new RemoveAuthorMiddleware(personManager),
+                new SetAuthorMiddleware(bookshelf, personManager),
                 new HelpMiddleware()
         );
     }
