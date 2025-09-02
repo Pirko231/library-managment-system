@@ -128,7 +128,6 @@ public class GUIView implements View {
         books.setContent(CategoryObject.toCategoryObject(model.getBooks()));
         authors.setContent(CategoryObject.toCategoryObject(model.getAuthors()));
         people.setContent(CategoryObject.toCategoryObject(model.getPeople()));
-        books.fetchPeople(model.getPeople());
         frame.repaint();
     }
 

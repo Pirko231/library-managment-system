@@ -10,6 +10,7 @@ import MVC.objects.PersonManager;
 
 public class CategoryObjectGroup extends JPanel {
     private String code;
+    private CategorySearch search = new CategorySearch();
     private CategoryAddObject addButton;
 
     public CategoryObjectGroup(String code, CategoryAddObject addButton, CategoryObject... objects) {
@@ -17,6 +18,7 @@ public class CategoryObjectGroup extends JPanel {
         this.addButton = addButton;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentY(LEFT_ALIGNMENT);
+        add(search);
         add(addButton);
         for (var object : objects) {
             add(object);
@@ -32,15 +34,12 @@ public class CategoryObjectGroup extends JPanel {
     public void setContent(List<? extends CategoryObject> content) {
         removeAll();
         addButton.fetchData();
+        add(search);
         add(addButton);
         for (var o : content) {
             add(o);
         }
         revalidate();
         repaint();
-    }
-
-    public void fetchPeople(List<Person> people) {
-        
     }
 }
